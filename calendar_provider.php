@@ -26,8 +26,10 @@ class Calendar {
 		$db = new mysqli($server, $username, "Ns5qKknK", $username);
 		return $db;
 	}
-	// public function editEvent($name, $description, $event_date) {
-	// }
+	public function editEvent($sql_string) {
+		$db = $this->getDB();
+		$db->query("UPDATE calendar SET " . $sql_string . "WHERE event_id=" . $_REQUEST['event_id']);
+	}
 }
 $calendar = new Calendar;
 
@@ -43,9 +45,14 @@ if($method) {
 		case "deleteEvent":
 			$calendar->deleteEvent($_REQUEST['event_id']);
 			break;
-		// case "editEvent":
-		// 	$calendar->editEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date']);
-		// 	break;
+		 case "editEvent":
+			$changed_data = array();
+			$_REQUEST['name'] ? $changed_data['name'] = "name='" . $_REQUEST['name'] . "'" : '';
+			$_REQUEST['description'] ? $changed_data['description'] = "description='" . $_REQUEST['description'] . "'": '';
+			$_REQUEST['event_date'] ? $changed_data['event_date'] = "event_date='" . $_REQUEST['event_date'] . "'": '';
+			$sql_string = implode(", ", $changed_data);
+			$calendar->editEvent($sql_string);
+			break;
 		
 	}
 }
