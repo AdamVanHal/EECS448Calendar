@@ -18,7 +18,29 @@
   <button type="button" class="btn btn-default btn-lg pull-right" id="myRem">Remove Event</button>
   <button type="button" class="btn btn-default btn-lg pull-right" id="myBtn">Add Event</button>
 
-  <!-- Modal -->
+  <!-- Modal for Removing event -->
+  <div class="modal fade" id="myRemove" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for ="select">Select event to remove.</label>
+              <p id="event"></p>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal for Adding event -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -31,12 +53,12 @@
               <input type="date" class="form-control" id="date">
             </div>
             <div class="form-group">
-              <label for="psw"></span> Event</label>
+              <label for="eve"></span> Event</label>
               <input type="text" class="form-control" id="eventName" placeholder="Enter Event">
               <textarea class="form-control" id="eventDetails" placeholder="Enter Details"></textarea>
             </div>
 
-              <button type="submit" class="btn btn-success btn-block" onclick = "addToCalendar()"></span> Submit</button>
+              <button type="button" class="btn btn-success btn-block" onclick = "addToCalendar()"></span> Submit</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -55,11 +77,19 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $("#myRem").click(function(){
+        $("#myRemove").modal();
+    });
+});
+
 function addToCalendar() {
           var date = document.getElementById("date").value;
           var eventName = document.getElementById("eventName").value;
-          var eventDetails = document.getElementById("eventDetails").value;
+          var eventDetails = document.getElementById("eventDetails").value
           document.getElementById("event").innerHTML = date + " " + eventName + " " + eventDetails;
+          var eventDN = date + " " + eventName;
+          eventList.push(eventDN);
           return false;
        }
 </script>
