@@ -1,135 +1,489 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css">
     <title> Calendar </title>
     <style>
-      #Calendar   { margin: 1em auto; padding: 1em; border: 4px solid black; border-radius: 10px;background-color: #F8F8F8; height: 100%;}
-      #week1 { border: 4px; height: 20%;}
-      #day1 { border: 4px; width: 14%;}
+
     </style>
 
   </head>
   <body>
-    <table>
-    </table>
-    <div id="Calendar">
+    <select name = "monthSelect" id = "monthSelect">
+      <option value="1">January</option>
+      <option value="2">Febuary</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
 
+    <div class="Calendar">
+      <table id = "Month">
+        <div id="Days">
+          <tr>
+
+            <th>Sunday</th>
+
+            <th>Monday</th>
+
+            <th>Tuesday</th>
+
+            <th>Wednesday</th>
+
+            <th>Thursday</th>
+
+            <th>Friday</th>
+
+            <th>Saturday</th>
+
+          </tr>
+        </div>
       <div id="week1">
-        <div id="day1">
+        <tr>
 
-        </div>
-        <div id="day2">
+          <td id="day1">test</td>
 
-        </div>
-        <div id="day3">
+          <td id="day2">Test</td>
 
-        </div>
-        <div id="day4">
+          <td id="day3">Test</td>
 
-        </div>
-        <div id="day5">
+          <td id="day4">Test</td>
 
-        </div>
-        <div id="day6">
+          <td id="day5">Test</td>
 
-        </div>
-        <div id="day7">
+          <td id="day6">Test</td>
 
-        </div>
+          <td id="day7">Test</td>
+
+        </tr>
       </div>
       <div id="week2">
-        <div id="day8">
+        <tr>
 
-        </div>
-        <div id="day9">
+          <td id="day8">Test</td>
 
-        </div>
-        <div id="day10">
+          <td id="day9">Test</td>
 
-        </div>
-        <div id="day11">
+          <td id="day10">Test</td>
 
-        </div>
-        <div id="day12">
+          <td id="day11">Test</td>
 
-        </div>
-        <div id="day13">
+          <td id="day12">Test</td>
 
-        </div>
-        <div id="day14">
+          <td id="day13">Test</td>
 
-        </div>
+          <td id="day14">Test</td>
+
+        </tr>
       </div>
       <div id="week3">
-        <div id="day15">
+        <tr>
 
-        </div>
-        <div id="day16">
+          <td id="day15">Test</td>
 
-        </div>
-        <div id="day17">
+          <td id="day16">Test</td>
 
-        </div>
-        <div id="day18">
+          <td id="day17">Test</td>
 
-        </div>
-        <div id="day19">
+          <td id="day18">Test</td>
 
-        </div>
-        <div id="day20">
+          <td id="day19">Test</td>
 
-        </div>
-        <div id="day21">
+          <td id="day20">Test</td>
 
-        </div>
+          <td id="day21">Test</td>
+
+        </tr>
       </div>
       <div id="week4">
-        <div id="day22">
+        <tr>
 
-        </div>
-        <div id="day23">
+          <td id="day22">Test</td>
 
-        </div>
-        <div id="day24">
+          <td id="day23">Test</td>
 
-        </div>
-        <div id="day25">
+          <td id="day24">Test</td>
 
-        </div>
-        <div id="day26">
+          <td id="day25">Test</td>
 
-        </div>
-        <div id="day27">
+          <td id="day26">Test</td>
 
-        </div>
-        <div id="day28">
+          <td id="day27">Test</td>
 
-        </div>
+          <td id="day28">Test</td>
+
+        </tr>
       </div>
       <div id="week5">
-        <div id="day29">
+        <tr>
 
-        </div>
-        <div id="day30">
+          <td id="day29">Test</td>
 
-        </div>
-        <div id="day31">
+          <td id="day30">Test</td>
 
-        </div>
-        <div id="day32">
+          <td id="day31">Test</td>
 
-        </div>
-        <div id="day33">
+          <td id="day32">Test</td>
 
-        </div>
-        <div id="day34">
+          <td id="day33">Test</td>
 
-        </div>
-        <div id="day35">
+          <td id="day34">Test</td>
 
-        </div>
+          <td id="day35">Test</td>
+
+        </tr>
       </div>
-    </div?
+      </table>
+    </div>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+
+var monthSelect = document.getElementById('monthSelect');
+
+var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
+
+//var tag = [day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day30, day31, day32, day33, day34, day35];
+monthSelect.onchange = function() {
+  var month = monthSelect.value;
+  backEnd(month);
+  };
+
+//$("#monthSelect").change(function() {
+//  alert("jquery");
+//});
+function backEnd(num)
+{
+  switch (num){
+    case "1":
+
+      for(var i = -4; i < 30; i++)
+      {
+        var temp = i;
+        if(i < 1)
+        {
+          switch (i){
+            case -4:
+            temp = 27;
+            break;
+            case -3:
+            temp = 28;
+            break;
+            case -2:
+            temp = 29;
+            break;
+            case -1:
+            temp = 30;
+            break;
+            case 0:
+            temp = 31;
+            break;
+          }
+        }
+        tag[i+4].innerHTML = temp;
+      }
+      break;
+    case "2":
+      for(var i = 0; i < 35; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 29)
+        {
+          switch (i){
+            case 0:
+            temp = 31;
+            break;
+            case 30:
+            temp = 1;
+            break;
+            case 31:
+            temp = 2;
+            break;
+            case 32:
+            temp = 3;
+            break;
+            case 33:
+            temp = 4;
+            break;
+            case 34:
+            temp = 5;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "3":
+      for(var i = -1; i < 35; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 31)
+        {
+          switch (i){
+            case -1:
+            temp = 28;
+            break;
+            case 0:
+            temp = 29;
+            break;
+            case 32:
+            temp = 1;
+            break;
+            case 33:
+            temp = 2;
+            break;
+          }
+        }
+        tag[i+1].innerHTML = temp;
+      }
+      break;
+    case "4":
+      for(var i = 0; i < 35; i++)
+      {
+        var temp = i;
+        if(i < 1)
+        {
+          switch (i){
+            case -4:
+            temp = 27;
+            break;
+            case -3:
+            temp = 28;
+            break;
+            case -2:
+            temp = 29;
+            break;
+            case -1:
+            temp = 30;
+            break;
+            case 0:
+            temp = 31;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "5":
+      for(var i = 1; i < 36; i++)
+      {
+        var temp = i;
+        if(i > 31)
+        {
+          switch (i){
+            case 32:
+            temp = 1;
+            break;
+            case 33:
+            temp = 2;
+            break;
+            case 34:
+            temp = 3;
+            break;
+            case 35:
+            temp = 4;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "6":
+      alert("6");
+      for(var i = -2; i < 32; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 30)
+        {
+          switch (i){
+            case -2:
+            temp = 29;
+            break;
+            case -1:
+            temp = 30;
+            break;
+            case 0:
+            temp = 31;
+            break;
+            case 32:
+            temp = 2;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "7":
+      for(var i = -4; i < 31; i++)
+      {
+        var temp = i;
+        if(i < 1)
+        {
+          switch (i){
+            case -4:
+            temp = 26;
+            break;
+            case -3:
+            temp = 27;
+            break;
+            case -2:
+            temp = 28;
+            break;
+            case -1:
+            temp = 29;
+            break;
+            case 0:
+            temp = 30;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "8":
+      for(var i = 0; i < 35; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 31)
+        {
+          switch (i){
+            case 0:
+            temp = 31;
+            break;
+            case 32:
+            temp = 1;
+            break;
+            case 33:
+            temp = 2;
+            break;
+            case 34:
+            temp = 3;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "9":
+      for(var i = -3; i < 32; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 30)
+        {
+          switch (i){
+            case -3:
+            temp = 28;
+            break;
+            case -2:
+            temp = 29;
+            break;
+            case -1:
+            temp = 30;
+            break;
+            case 0:
+            temp = 31;
+            break;
+            case 31:
+            temp = 1;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "10":
+      for(var i = -5; i < 30; i++)
+      {
+        var temp = i;
+        if(i < 1 )
+        {
+          switch (i){
+            case -5:
+            temp = 25;
+            break;
+            case -4:
+            temp = 26;
+            break;
+            case -3:
+            temp = 27;
+            break;
+            case -2:
+            temp = 28;
+            break;
+            case -1:
+            temp = 29;
+            break;
+            case 0:
+            temp = 30;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    case "11":
+      for(var i = -1; i < 34; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 30)
+        {
+          switch (i){
+            case -1:
+            temp = 30;
+            break;
+            case 0:
+            temp = 31;
+            break;
+            case 31:
+            temp = 1;
+            break;
+            case 32:
+            temp = 2;
+            break;
+            case 33:
+            temp = 3;
+            break;
+          }
+        }
+        tag[i+1].innerHTML = temp;
+      }
+      break;
+    case "12":
+      for(var i = -3; i < 32; i++)
+      {
+        var temp = i;
+        if(i < 1)
+        {
+          switch (i){
+            case -3:
+            temp = 28;
+            break;
+            case -2:
+            temp = 29;
+            break;
+            case -1:
+            temp = 30;
+            break;
+            case 0:
+            temp = 31;
+            break;
+          }
+        }
+        tag[i].innerHTML = temp;
+      }
+      break;
+    default:
+      alert("default");
+  }
+
+}
+    </script>
   </body>
 
 </html>
