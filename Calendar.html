@@ -3,13 +3,24 @@
   <head>
     <link rel="stylesheet" href="style.css">
     <title> Calendar </title>
-    <style>
+    <div id = "viewSelector">
+      <button type="button" id = "yButton">Year</button>
+      <button type="button" id = "mButton">Month</button>
+      <button type="button" id = "wButton">Week</button>
+    </div>
 
-    </style>
+    <form id = "dateSubmit">
+      <input type="date" name="bday">
+    </form>
+    <button onclick="getDate()">Submit</button>
+    <p id="demo"></p>
+
 
   </head>
   <body>
-    <select name = "monthSelect" id = "monthSelect">
+    <div id = "Calendar" class="Calendar">
+
+    <h1><select name = "monthSelect" id = "monthSelect">
       <option value="1">January</option>
       <option value="2">Febuary</option>
       <option value="3">March</option>
@@ -22,9 +33,9 @@
       <option value="10">October</option>
       <option value="11">November</option>
       <option value="12">December</option>
-    </select>
+    </select></h1>
 
-    <div class="Calendar">
+
       <table id = "Month">
         <div id="Days">
           <tr>
@@ -48,102 +59,152 @@
       <div id="week1">
         <tr>
 
-          <td id="day1">test</td>
+          <td id="day1">27</td>
 
-          <td id="day2">Test</td>
+          <td id="day2">28</td>
 
-          <td id="day3">Test</td>
+          <td id="day3">29</td>
 
-          <td id="day4">Test</td>
+          <td id="day4">30</td>
 
-          <td id="day5">Test</td>
+          <td id="day5">31</td>
 
-          <td id="day6">Test</td>
+          <td id="day6">1</td>
 
-          <td id="day7">Test</td>
+          <td id="day7">2</td>
 
         </tr>
       </div>
       <div id="week2">
         <tr>
 
-          <td id="day8">Test</td>
+          <td id="day8">3</td>
 
-          <td id="day9">Test</td>
+          <td id="day9">4</td>
 
-          <td id="day10">Test</td>
+          <td id="day10">5</td>
 
-          <td id="day11">Test</td>
+          <td id="day11">6</td>
 
-          <td id="day12">Test</td>
+          <td id="day12">7</td>
 
-          <td id="day13">Test</td>
+          <td id="day13">8</td>
 
-          <td id="day14">Test</td>
+          <td id="day14">9</td>
 
         </tr>
       </div>
       <div id="week3">
         <tr>
 
-          <td id="day15">Test</td>
+          <td id="day15">10</td>
 
-          <td id="day16">Test</td>
+          <td id="day16">11</td>
 
-          <td id="day17">Test</td>
+          <td id="day17">12</td>
 
-          <td id="day18">Test</td>
+          <td id="day18">13</td>
 
-          <td id="day19">Test</td>
+          <td id="day19">14</td>
 
-          <td id="day20">Test</td>
+          <td id="day20">15</td>
 
-          <td id="day21">Test</td>
+          <td id="day21">16</td>
 
         </tr>
       </div>
       <div id="week4">
         <tr>
 
-          <td id="day22">Test</td>
+          <td id="day22">17</td>
 
-          <td id="day23">Test</td>
+          <td id="day23">18</td>
 
-          <td id="day24">Test</td>
+          <td id="day24">19</td>
 
-          <td id="day25">Test</td>
+          <td id="day25">20</td>
 
-          <td id="day26">Test</td>
+          <td id="day26">21</td>
 
-          <td id="day27">Test</td>
+          <td id="day27">22</td>
 
-          <td id="day28">Test</td>
+          <td id="day28">23</td>
 
         </tr>
       </div>
       <div id="week5">
+
         <tr>
 
-          <td id="day29">Test</td>
+          <td id="day29">24</td>
 
-          <td id="day30">Test</td>
+          <td id="day30">25</td>
 
-          <td id="day31">Test</td>
+          <td id="day31">26</td>
 
-          <td id="day32">Test</td>
+          <td id="day32">27</td>
 
-          <td id="day33">Test</td>
+          <td id="day33">28</td>
 
-          <td id="day34">Test</td>
+          <td id="day34">29</td>
 
-          <td id="day35">Test</td>
+          <td id="day35">30</td>
 
         </tr>
       </div>
       </table>
     </div>
+
+
+    <div id = "Year" class = "Year">
+      <img src="January.png" alt="January" style="width:135px;height:75px;">
+      <img src="Febuary.png" alt="Febuary" style="width:135px;height:75px;">
+      <img src="March.png" alt="March" style="width:135px;height:75px;">
+      <img src="April.png" alt="April" style="width:135px;height:75px;">
+      <img src="May.png" alt="May" style="width:135px;height:75px;">
+      <img src="June.png" alt="June" style="width:135px;height:75px;">
+      <img src="July.png" alt="July" style="width:135px;height:75px;">
+      <img src="August.png" alt="August" style="width:135px;height:75px;">
+      <img src="September.png" alt="September" style="width:135px;height:75px;">
+      <img src="October.png" alt="October" style="width:135px;height:75px;">
+      <img src="November.png" alt="November" style="width:135px;height:75px;">
+      <img src="December.png" alt="December" style="width:135px;height:75px;">
+
+
+
+
+    </div>
+
+
+
+
     <script src="jquery-2.2.3.min.js"></script>
     <script>
+
+    $("#yButton").click(function () {
+      $(".Year").show();
+        $(".Calendar").hide();
+    });
+    $("#mButton").click(function () {
+      $(".Year").hide();
+        $(".Calendar").show();
+    });
+    $("#wButton").click(function () {
+      $(".Year").hide();
+        $(".Calendar").hide();
+    });
+
+
+
+function getDate() {
+    var x = document.getElementById("dateSubmit");
+    var text = "";
+    var i;
+    for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value + "<br>";
+    }
+        document.getElementById("demo").innerHTML = text;
+}
 
 var monthSelect = document.getElementById('monthSelect');
 
@@ -163,7 +224,7 @@ function backEnd(num)
   switch (num){
     case "1":
 
-      for(var i = -4; i < 30; i++)
+      for(var i = -4; i < 31; i++)
       {
         var temp = i;
         if(i < 1)
@@ -295,7 +356,6 @@ function backEnd(num)
       }
       break;
     case "6":
-      alert("6");
       for(var i = -2; i < 32; i++)
       {
         var temp = i;
@@ -478,8 +538,6 @@ function backEnd(num)
         tag[i].innerHTML = temp;
       }
       break;
-    default:
-      alert("default");
   }
 
 }
