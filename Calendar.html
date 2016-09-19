@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="details.html"> -->
+    <link rel="details.html">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -86,8 +86,10 @@
     <p></p>
 
     <div id = "Calendar" class="Calendar">
-
-    <div id = "ddl"><select name = "monthSelect" id = "monthSelect">
+      <button onClick="monthDown()" type="button">Back</button>
+      <h2 id = "displayMonth"></h2>
+      <button onClick="monthUp()" type="button">Next</button>
+      <div id = "ddl"><select name = "monthSelect" id = "monthSelect">
       <option value="8">August</option>
       <option value="9">September</option>
       <option value="10">October</option>
@@ -127,76 +129,76 @@
       <div id="week1">
         <tr>
 
-          <td id="day1">31</td>
+          <td onClick="monthToDay(this.id)" id="day1">31</td>
 
-          <td id="day2">1</td>
+          <td  onClick="monthToDay(this.id)" id="day2">1</td>
 
-          <td id="day3">2</td>
+          <td  onClick="monthToDay(this.id)" id="day3">2</td>
 
-          <td id="day4">3</td>
+          <td  onClick="monthToDay(this.id)" id="day4">3</td>
 
-          <td id="day5">4</td>
+          <td  onClick="monthToDay(this.id)" id="day5">4</td>
 
-          <td id="day6">5</td>
+          <td  onClick="monthToDay(this.id)" id="day6">5</td>
 
-          <td id="day7">6</td>
+          <td  onClick="monthToDay(this.id)" id="day7">6</td>
 
         </tr>
       </div>
       <div id="week2">
         <tr>
 
-          <td id="day8">7</td>
+          <td  onClick="monthToDay(this.id)" id="day8">7</td>
 
-          <td id="day9">8</td>
+          <td  onClick="monthToDay(this.id)" id="day9">8</td>
 
-          <td id="day10">9</td>
+          <td  onClick="monthToDay(this.id)" id="day10">9</td>
 
-          <td id="day11">10</td>
+          <td  onClick="monthToDay(this.id)" id="day11">10</td>
 
-          <td id="day12">11</td>
+          <td  onClick="monthToDay(this.id)" id="day12">11</td>
 
-          <td id="day13">12</td>
+          <td  onClick="monthToDay(this.id)" id="day13">12</td>
 
-          <td id="day14">13</td>
+          <td  onClick="monthToDay(this.id)" id="day14">13</td>
 
         </tr>
       </div>
       <div id="week3">
         <tr>
 
-          <td id="day15">14</td>
+          <td  onClick="monthToDay(this.id)" id="day15">14</td>
 
-          <td id="day16">15</td>
+          <td  onClick="monthToDay(this.id)" id="day16">15</td>
 
-          <td id="day17">16</td>
+          <td  onClick="monthToDay(this.id)" id="day17">16</td>
 
-          <td id="day18">17</td>
+          <td  onClick="monthToDay(this.id)" id="day18">17</td>
 
-          <td id="day19">18</td>
+          <td  onClick="monthToDay(this.id)" id="day19">18</td>
 
-          <td id="day20">19</td>
+          <td  onClick="monthToDay(this.id)" id="day20">19</td>
 
-          <td id="day21">20</td>
+          <td  onClick="monthToDay(this.id)" id="day21">20</td>
 
         </tr>
       </div>
       <div id="week4">
         <tr>
 
-          <td id="day22">21</td>
+          <td  onClick="monthToDay(this.id)" id="day22">21</td>
 
-          <td id="day23">22</td>
+          <td  onClick="monthToDay(this.id)" id="day23">22</td>
 
-          <td id="day24">23</td>
+          <td  onClick="monthToDay(this.id)" id="day24">23</td>
 
-          <td id="day25">24</td>
+          <td  onClick="monthToDay(this.id)" id="day25">24</td>
 
-          <td id="day26">25</td>
+          <td  onClick="monthToDay(this.id)" id="day26">25</td>
 
-          <td id="day27">26</td>
+          <td  onClick="monthToDay(this.id)" id="day27">26</td>
 
-          <td id="day28">27</td>
+          <td  onClick="monthToDay(this.id)" id="day28">27</td>
 
         </tr>
       </div>
@@ -204,19 +206,19 @@
 
         <tr>
 
-          <td id="day29">28</td>
+          <td  onClick="monthToDay(this.id)" id="day29">28</td>
 
-          <td id="day30">29</td>
+          <td  onClick="monthToDay(this.id)" id="day30">29</td>
 
-          <td id="day31">30</td>
+          <td  onClick="monthToDay(this.id)" id="day31">30</td>
 
-          <td id="day32">31</td>
+          <td  onClick="monthToDay(this.id)" id="day32">31</td>
 
-          <td id="day33">1</td>
+          <td  onClick="monthToDay(this.id)" id="day33">1</td>
 
-          <td id="day34">2</td>
+          <td  onClick="monthToDay(this.id)" id="day34">2</td>
 
-          <td id="day35">3</td>
+          <td  onClick="monthToDay(this.id)" id="day35">3</td>
 
         </tr>
       </div>
@@ -253,6 +255,7 @@ window.onload = function() {
   $(".Year").show();
   $(".Calendar").hide();
   $(".Day").hide();
+  displayMonth();
 };
 
 
@@ -260,9 +263,11 @@ window.onload = function() {
 var currentState = "month",
     monthSelect = document.getElementById('monthSelect'),
     currentDate = new Date(),
+    currentYear = "2016",
+    currentDay = "18",
     currentMonth = "9";
 var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
-
+var dateSentence = currentDate;
     $("#addEventButton").click(function() {
       $("#myModal").modal();
     });
@@ -270,7 +275,6 @@ var tag = [document.getElementById('day1'), document.getElementById('day2'), doc
       getEvents();
       $("#myRemove").modal();
     });
-
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
@@ -290,15 +294,13 @@ var tag = [document.getElementById('day1'), document.getElementById('day2'), doc
       $(".Day").hide();
     });
     $("#dButton").click(function () {
-      document.getElementById("DisplayDate").innerHTML = currentDate;
+      document.getElementById("DisplayDate").innerHTML = dateSentence;
       currentState = "day";
       $(".Year").hide();
       $(".Day").show();
       $(".Calendar").hide();
     });
-
 //helper functions
-
 function addToCalendar() {
   var eventdate = document.getElementById("event_date").value,
       eventName = document.getElementById("eventName").value,
@@ -316,7 +318,6 @@ function addToCalendar() {
         }
     });
 }
-
 function getEvents(eventdate) {
   $.ajax({
         url: 'calendar_provider.php',
@@ -330,7 +331,6 @@ function getEvents(eventdate) {
         }
     });
 }
-
 function clickMonth(mon){
 mon = mon.toString();
   currentState = "month";
@@ -339,6 +339,130 @@ mon = mon.toString();
   $(".Day").hide();
   backEnd(mon);
 }
+
+function monthToDay(element){
+  currentDay = document.getElementById(element).innerHTML;
+  $(".Year").hide();
+  $(".Day").show();
+  $(".Calendar").hide();
+  changeDay();
+}
+
+function changeDay()
+{
+//  getYear();
+  alert(currentMonth);
+  alert(currentYear);
+  alert(currentDay);
+  switch (currentMonth){
+    case "0":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "1":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "2":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "3":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "4":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "5":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "6":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "7":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "8":
+      currentMonth = "0" + currentMonth;
+    break;
+    case "9":
+      currentMonth = "0" + currentMonth;
+    break;
+  }
+  switch (currentDay){
+    case "0":
+      currentDay = "0" + currentDay;
+    break;
+    case "1":
+      currentDay = "0" + currentDay;
+    break;
+    case "2":
+      currentDay = "0" + currentDay;
+    break;
+    case "3":
+      currentDay = "0" + currentDay;
+    break;
+    case "4":
+      currentDay = "0" + currentDay;
+    break;
+    case "5":
+      currentDay = "0" + currentDay;
+    break;
+    case "6":
+      currentDay = "0" + currentDay;
+    break;
+    case "7":
+      currentDay = "0" + currentDay;
+    break;
+    case "8":
+      currentDay = "0" + currentDay;
+    break;
+    case "9":
+      currentDay = "0" + currentDay;
+    break;
+  }
+  dateSentence = "Date: " + currentMonth + "-" + currentDay + "-" + currentYear;
+  var eventdate = currentYear + "-" + currentMonth + "-" + currentDay;
+  var data = getEvents(eventdate);
+  document.getElementById("DisplayDate").innerHTML = dateSentence;
+}
+
+function displayMonth()
+{
+//  getYear();
+  if(currentMonth == "1")
+  {document.getElementById("DisplayMonth").innerHTML = "January";}
+  else if (currentMonth == "2")
+  {document.getElementById("DisplayMonth").innerHTML = "Febuary";}
+  else if (currentMonth == "3")
+  {document.getElementById("DisplayMonth").innerHTML = "March";}
+  else if (currentMonth == "4")
+  {document.getElementById("DisplayMonth").innerHTML = "April";}
+  else if (currentMonth == "5")
+  {document.getElementById("DisplayMonth").innerHTML = "May";}
+  else if (currentMonth == "6")
+  {document.getElementById("DisplayMonth").innerHTML = "June";}
+  else if (currentMonth == "7")
+  {document.getElementById("DisplayMonth").innerHTML = "July";}
+  else if (currentMonth == "8")
+  {document.getElementById("DisplayMonth").innerHTML = "August";}
+  else if (currentMonth == "9")
+  {document.getElementById("DisplayMonth").innerHTML = "September";}
+  else if (currentMonth == "10")
+  {document.getElementById("DisplayMonth").innerHTML = "October";}
+  else if (currentMonth == "11")
+  {document.getElementById("DisplayMonth").innerHTML = "November";}
+  else if (currentMonth == "12")
+  {document.getElementById("DisplayMonth").innerHTML = "December";}
+}
+
+function getYear()
+{
+  if(month.parseInt() > 7)
+  currentYear = "2016";
+
+  else
+  currentYear = "2017";
+}
+
+
 
 function getDate() {
     var x = document.getElementById("dateSubmit");
@@ -402,7 +526,7 @@ function backEnd(num)
       }
       break;
     case "2":
-      for(var i = -2; i < 32; i++)
+      for(var i = -2; i < 33; i++)
       {
         var temp = i;
         if(i < 1 || i > 28)
@@ -435,7 +559,7 @@ function backEnd(num)
       }
       break;
     case "3":
-      for(var i = -2; i < 32; i++)
+      for(var i = -2; i < 33; i++)
       {
         var temp = i;
         if(i < 1 || i > 30)
@@ -489,7 +613,7 @@ function backEnd(num)
       }
       break;
     case "1":
-      for(var i = 1; i < 35; i++)
+      for(var i = 1; i < 36; i++)
       {
         var temp = i;
         if(i > 31)
@@ -570,7 +694,7 @@ function backEnd(num)
       }
       break;
     case "8":
-      for(var i = -1; i < 33; i++)
+      for(var i = 0; i < 35; i++)
       {
         var temp = i;
         if(i < 1 || i > 31)
