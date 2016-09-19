@@ -2,9 +2,9 @@
 
 class Calendar {
 
-	public function getEvents() {
+	public function getEvents($event_date) {
 		$db = $this->getDB();
-		$records = $db->query("SELECT * FROM calendar");
+		$records = $db->query("SELECT * FROM calendar WHERE event_date='" . $event_date . "'");
 		$data = array();
 		while($row = $records->fetch_assoc()) {
 			$data[] = $row; 
@@ -37,7 +37,8 @@ $method = $_REQUEST['method'];
 if($method) {
 	switch ($method) {
 		case "getEvents":
-			$data = $calendar->getEvents();
+			$data = $calendar->getEvents($_REQUEST['event_date']);
+			return $data;
 			break;
 		case "addEvent":
 			$calendar->addEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date']);
