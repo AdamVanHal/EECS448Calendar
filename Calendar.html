@@ -10,7 +10,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title> Calendar </title>
-    
+
     <div id = "viewSelector">
       <button type="button" id = "yButton">Year</button>
       <button type="button" id = "mButton">Month</button>
@@ -226,20 +226,20 @@
 
     <div id = "Year" class = "Year">
       <h1>2016-2017 School Year</h1>
-      <button onclick="clickMonth(1)" type="button" id = "January">January</button>
-      <button onclick="clickMonth(2)" type="button" id = " Febuary ">Febuary</button>
-      <button onclick="clickMonth(3)" type="button" id = " Marc h">March</button>
-      <button onclick="clickMonth(4)" type="button" id = " April ">April</button>
-      <p></p>
-      <button onclick="clickMonth(5)" type="button" id = "  May  ">May</button>
-      <button onclick="clickMonth(6)" type="button" id = " June  ">June</button>
-      <button onclick="clickMonth(7)" type="button" id = " July  ">July</button>
       <button onclick="clickMonth(8)" type="button" id = "August">August</button>
-      <p></p>
       <button onclick="clickMonth(9)" type="button" id = "September">September</button>
       <button onclick="clickMonth(10)" type="button" id = "October ">October</button>
       <button onclick="clickMonth(11)" type="button" id = "November">November</button>
+      <p></p>
       <button onclick="clickMonth(12)" type="button" id = "December">December</button>
+      <button onclick="clickMonth(1)" type="button" id = "January">January</button>
+      <button onclick="clickMonth(2)" type="button" id = " Febuary ">Febuary</button>
+      <button onclick="clickMonth(3)" type="button" id = " Marc h">March</button>
+      <p></p>
+      <button onclick="clickMonth(4)" type="button" id = " April ">April</button>
+      <button onclick="clickMonth(5)" type="button" id = "  May  ">May</button>
+      <button onclick="clickMonth(6)" type="button" id = " June  ">June</button>
+      <button onclick="clickMonth(7)" type="button" id = " July  ">July</button>
     </div>
 
     <div id = "Day" class = "Day">
@@ -249,22 +249,25 @@
 
 
     <script>
+window.onload = function() {
+  $(".Year").show();
+  $(".Calendar").hide();
+  $(".Day").hide();
+};
+
 
     //global variables
-
 var currentState = "month",
     monthSelect = document.getElementById('monthSelect'),
     currentDate = new Date(),
     currentMonth = "9";
-
 var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
 
-    
     $("#addEventButton").click(function() {
       console.log("poop");
       $("#myModal").modal();
     });
-  
+
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
@@ -292,6 +295,7 @@ var tag = [document.getElementById('day1'), document.getElementById('day2'), doc
     });
 
 function clickMonth(mon){
+mon = mon.toString();
   currentState = "month";
   $(".Year").hide();
   $(".Calendar").show();
@@ -311,7 +315,6 @@ function getDate() {
         month = text.substring(5,6),
         day = text.substring(8,9);
     if(currentState == "year"){
-
     }
     else if(currentState == "month"){
       backEnd(month);
@@ -323,21 +326,18 @@ function getDate() {
     {
       alert("day");
     }
-
 }
-
-
 //var tag = [day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day30, day31, day32, day33, day34, day35];
 monthSelect.onchange = function() {
   var month = monthSelect.value;
   backEnd(month);
   };
-
 //$("#monthSelect").change(function() {
 //  alert("jquery");
 //});
 function backEnd(num)
 {
+  alert(num);
   currentMonth = num;
   switch (num){
     case "5":
@@ -665,7 +665,6 @@ function backEnd(num)
       }
       break;
   }
-
 }
     </script>
   </body>
