@@ -7,6 +7,7 @@
       <button type="button" id = "yButton">Year</button>
       <button type="button" id = "mButton">Month</button>
       <button type="button" id = "wButton">Week</button>
+      <button type="button" id = "dButton">Day</button>
     </div>
 
     <form id = "dateSubmit">
@@ -21,6 +22,11 @@
     <div id = "Calendar" class="Calendar">
 
     <h1><select name = "monthSelect" id = "monthSelect">
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
       <option value="1">January</option>
       <option value="2">Febuary</option>
       <option value="3">March</option>
@@ -28,11 +34,7 @@
       <option value="5">May</option>
       <option value="6">June</option>
       <option value="7">July</option>
-      <option value="8">August</option>
-      <option value="9">September</option>
-      <option value="10">October</option>
-      <option value="11">November</option>
-      <option value="12">December</option>
+
     </select></h1>
 
 
@@ -59,76 +61,76 @@
       <div id="week1">
         <tr>
 
-          <td id="day1">27</td>
+          <td id="day1">31</td>
 
-          <td id="day2">28</td>
+          <td id="day2">1</td>
 
-          <td id="day3">29</td>
+          <td id="day3">2</td>
 
-          <td id="day4">30</td>
+          <td id="day4">3</td>
 
-          <td id="day5">31</td>
+          <td id="day5">4</td>
 
-          <td id="day6">1</td>
+          <td id="day6">5</td>
 
-          <td id="day7">2</td>
+          <td id="day7">6</td>
 
         </tr>
       </div>
       <div id="week2">
         <tr>
 
-          <td id="day8">3</td>
+          <td id="day8">7</td>
 
-          <td id="day9">4</td>
+          <td id="day9">8</td>
 
-          <td id="day10">5</td>
+          <td id="day10">9</td>
 
-          <td id="day11">6</td>
+          <td id="day11">10</td>
 
-          <td id="day12">7</td>
+          <td id="day12">11</td>
 
-          <td id="day13">8</td>
+          <td id="day13">12</td>
 
-          <td id="day14">9</td>
+          <td id="day14">13</td>
 
         </tr>
       </div>
       <div id="week3">
         <tr>
 
-          <td id="day15">10</td>
+          <td id="day15">14</td>
 
-          <td id="day16">11</td>
+          <td id="day16">15</td>
 
-          <td id="day17">12</td>
+          <td id="day17">16</td>
 
-          <td id="day18">13</td>
+          <td id="day18">17</td>
 
-          <td id="day19">14</td>
+          <td id="day19">18</td>
 
-          <td id="day20">15</td>
+          <td id="day20">19</td>
 
-          <td id="day21">16</td>
+          <td id="day21">20</td>
 
         </tr>
       </div>
       <div id="week4">
         <tr>
 
-          <td id="day22">17</td>
+          <td id="day22">21</td>
 
-          <td id="day23">18</td>
+          <td id="day23">22</td>
 
-          <td id="day24">19</td>
+          <td id="day24">23</td>
 
-          <td id="day25">20</td>
+          <td id="day25">24</td>
 
-          <td id="day26">21</td>
+          <td id="day26">25</td>
 
-          <td id="day27">22</td>
+          <td id="day27">26</td>
 
-          <td id="day28">23</td>
+          <td id="day28">27</td>
 
         </tr>
       </div>
@@ -136,19 +138,19 @@
 
         <tr>
 
-          <td id="day29">24</td>
+          <td id="day29">28</td>
 
-          <td id="day30">25</td>
+          <td id="day30">29</td>
 
-          <td id="day31">26</td>
+          <td id="day31">30</td>
 
-          <td id="day32">27</td>
+          <td id="day32">31</td>
 
-          <td id="day33">28</td>
+          <td id="day33">1</td>
 
-          <td id="day34">29</td>
+          <td id="day34">2</td>
 
-          <td id="day35">30</td>
+          <td id="day35">3</td>
 
         </tr>
       </div>
@@ -169,10 +171,12 @@
       <img src="October.png" alt="October" style="width:135px;height:75px;">
       <img src="November.png" alt="November" style="width:135px;height:75px;">
       <img src="December.png" alt="December" style="width:135px;height:75px;">
+    </div>
 
 
 
-
+    <div id = "Day" class = "Day">
+document.getElementById("demo").innerHTML = Date();
     </div>
 
 
@@ -181,15 +185,31 @@
     <script src="jquery-2.2.3.min.js"></script>
     <script>
 
+    //global variables
+
+var currentState = "month";
+var monthSelect = document.getElementById('monthSelect');
+var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
+var currentDate = new Date();
+
+
     $("#yButton").click(function () {
+      currentState = "year";
       $(".Year").show();
         $(".Calendar").hide();
     });
     $("#mButton").click(function () {
+      currentState = "month";
       $(".Year").hide();
         $(".Calendar").show();
     });
     $("#wButton").click(function () {
+      currentState = "week";
+      $(".Year").hide();
+        $(".Calendar").hide();
+    });
+    $("#dButton").click(function () {
+      currentState = "day";
       $(".Year").hide();
         $(".Calendar").hide();
     });
@@ -205,11 +225,25 @@ function getDate() {
         text += x.elements[i].value + "<br>";
     }
         document.getElementById("demo").innerHTML = text;
+    var year = text.substring(0,3),
+        month = text.substring(5,6),
+        day = text.substring(8,9);
+    if(currentState == "year"){
+
+    }
+    else if(currentState == "month"){
+      backEnd(month);
+    }
+    else if(currentState == "week"){
+      backEnd(month);
+    }
+    else
+    {
+      alert("day");
+    }
+
 }
 
-var monthSelect = document.getElementById('monthSelect');
-
-var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
 
 //var tag = [day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12, day13, day14, day15, day16, day17, day18, day19, day20, day30, day31, day32, day33, day34, day35];
 monthSelect.onchange = function() {
@@ -222,77 +256,17 @@ monthSelect.onchange = function() {
 //});
 function backEnd(num)
 {
+  alert(num);
   switch (num){
-    case "1":
-
-      for(var i = -4; i < 31; i++)
-      {
-        var temp = i;
-        if(i < 1)
-        {
-          switch (i){
-            case -4:
-            temp = 27;
-            break;
-            case -3:
-            temp = 28;
-            break;
-            case -2:
-            temp = 29;
-            break;
-            case -1:
-            temp = 30;
-            break;
-            case 0:
-            temp = 31;
-            break;
-          }
-        }
-        tag[i+4].innerHTML = temp;
-      }
-      break;
-    case "2":
+    case "5":
       for(var i = 0; i < 35; i++)
-      {
-        var temp = i;
-        if(i < 1 || i > 29)
-        {
-          switch (i){
-            case 0:
-            temp = 31;
-            break;
-            case 30:
-            temp = 1;
-            break;
-            case 31:
-            temp = 2;
-            break;
-            case 32:
-            temp = 3;
-            break;
-            case 33:
-            temp = 4;
-            break;
-            case 34:
-            temp = 5;
-            break;
-          }
-        }
-        tag[i].innerHTML = temp;
-      }
-      break;
-    case "3":
-      for(var i = -1; i < 35; i++)
       {
         var temp = i;
         if(i < 1 || i > 31)
         {
           switch (i){
-            case -1:
-            temp = 28;
-            break;
             case 0:
-            temp = 29;
+            temp = 31;
             break;
             case 32:
             temp = 1;
@@ -300,24 +274,21 @@ function backEnd(num)
             case 33:
             temp = 2;
             break;
+            case 34:
+            temp = 3;
+            break;
           }
         }
-        tag[i+1].innerHTML = temp;
+        tag[i].innerHTML = temp;
       }
       break;
-    case "4":
-      for(var i = 0; i < 35; i++)
+    case "2":
+      for(var i = -2; i < 32; i++)
       {
         var temp = i;
-        if(i < 1)
+        if(i < 1 || i > 28)
         {
           switch (i){
-            case -4:
-            temp = 27;
-            break;
-            case -3:
-            temp = 28;
-            break;
             case -2:
             temp = 29;
             break;
@@ -327,13 +298,79 @@ function backEnd(num)
             case 0:
             temp = 31;
             break;
+            case 29:
+            temp = 1;
+            break;
+            case 30:
+            temp = 2;
+            break;
+            case 31:
+            temp = 3;
+            break;
+            case 32:
+            temp = 4;
+            break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+2].innerHTML = temp;
       }
       break;
-    case "5":
-      for(var i = 1; i < 36; i++)
+    case "3":
+      for(var i = -2; i < 32; i++)
+      {
+        var temp = i;
+        if(i < 1 || i > 30)
+        {
+          switch (i){
+            case -2:
+            temp = 26;
+            break;
+            case -1:
+            temp = 27;
+            break;
+            case 0:
+            temp = 28;
+            break;
+            case 32:
+            temp = 1;
+            break;
+          }
+        }
+        tag[i+2].innerHTML = temp;
+      }
+      break;
+    case "4":
+      for(var i = -5; i < 30; i++)
+      {
+        var temp = i;
+        if(i < 1 )
+        {
+          switch (i){
+            case -5:
+            temp = 25;
+            break;
+            case -4:
+            temp = 26;
+            break;
+            case -3:
+            temp = 27;
+            break;
+            case -2:
+            temp = 28;
+            break;
+            case -1:
+            temp = 29;
+            break;
+            case 0:
+            temp = 30;
+            break;
+          }
+        }
+        tag[i+5].innerHTML = temp;
+      }
+      break;
+    case "1":
+      for(var i = 1; i < 35; i++)
       {
         var temp = i;
         if(i > 31)
@@ -353,16 +390,19 @@ function backEnd(num)
             break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i-1].innerHTML = temp;
       }
       break;
     case "6":
-      for(var i = -2; i < 32; i++)
+      for(var i = -3; i < 32; i++)
       {
         var temp = i;
-        if(i < 1 || i > 30)
+        if(i < 1)
         {
           switch (i){
+            case -3:
+            temp = 28;
+            break;
             case -2:
             temp = 29;
             break;
@@ -372,21 +412,21 @@ function backEnd(num)
             case 0:
             temp = 31;
             break;
-            case 32:
-            temp = 2;
-            break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+3].innerHTML = temp;
       }
       break;
     case "7":
-      for(var i = -4; i < 31; i++)
+      for(var i = -5; i < 30; i++)
       {
         var temp = i;
-        if(i < 1)
+        if(i < 1 )
         {
           switch (i){
+            case -5:
+            temp = 25;
+            break;
             case -4:
             temp = 26;
             break;
@@ -404,16 +444,19 @@ function backEnd(num)
             break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+5].innerHTML = temp;
       }
       break;
     case "8":
-      for(var i = 0; i < 35; i++)
+      for(var i = -1; i < 33; i++)
       {
         var temp = i;
         if(i < 1 || i > 31)
         {
           switch (i){
+            case -1:
+            temp = 30;
+            break;
             case 0:
             temp = 31;
             break;
@@ -423,12 +466,9 @@ function backEnd(num)
             case 33:
             temp = 2;
             break;
-            case 34:
-            temp = 3;
-            break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+1].innerHTML = temp;
       }
       break;
     case "9":
@@ -455,7 +495,7 @@ function backEnd(num)
             break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+3].innerHTML = temp;
       }
       break;
     case "10":
@@ -485,7 +525,7 @@ function backEnd(num)
             break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+5].innerHTML = temp;
       }
       break;
     case "11":
@@ -536,7 +576,7 @@ function backEnd(num)
             break;
           }
         }
-        tag[i].innerHTML = temp;
+        tag[i+3].innerHTML = temp;
       }
       break;
   }
