@@ -25,10 +25,9 @@
       </form>
     </div>
 
-    <form id = "addEvent">
-      <input type="button" value="Add Event" id="addEventButton">
-    </form>
-    <input type="button" value="Get Events" id="getEventButton">
+    <input type="button" value="Add Event" id="addEventButton">
+    <input type="button" value="Remove Event" id="removeEventButton">
+    
 
   </head>
 
@@ -42,8 +41,10 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
             <div class="form-group">
-              <h3>Click an event to remove it</h3>
-              <p id="event"></p>
+              <h3>Provide Event ID To Remove</h3>
+              <p id="event_remove"></p>
+              <input type="text" class="form-control" id="eventID" placeholder="Enter One Event ID">
+              <button type="button" class="btn btn-success btn-block" onclick = "removeEvent()" ></span> Remove</button>
             </div>
           </form>
         </div>
@@ -73,7 +74,7 @@
               <textarea class="form-control" id="eventDetails" placeholder="Enter Details"></textarea>
             </div>
 
-              <button type="button" class="btn btn-success btn-block" onclick = "addToCalendar()" ></span> Submit</button>
+              <button type="submit" class="btn btn-success btn-block" onclick = "addToCalendar()" ></span> Submit</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -247,6 +248,7 @@
     <div id = "Day" class = "Day">
       <h1>DayView</h1>
       <h2 id="DisplayDate"></h2>
+      <h2 id="events"></h2>
     </div>
 
 
@@ -271,10 +273,10 @@ var dateSentence = currentDate;
     $("#addEventButton").click(function() {
       $("#myModal").modal();
     });
-    $("#getEventButton").click(function() {
-      getEvents();
+    $("#removeEventButton").click(function() {
       $("#myRemove").modal();
     });
+    
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
@@ -294,7 +296,7 @@ var dateSentence = currentDate;
       $(".Day").hide();
     });
     $("#dButton").click(function () {
-      document.getElementById("DisplayDate").innerHTML = dateSentence;
+      changeDay();
       currentState = "day";
       $(".Year").hide();
       $(".Day").show();
@@ -311,23 +313,44 @@ function addToCalendar() {
         type: 'GET',
         data: {method: "addEvent", name : eventName, description : eventDetails, event_date : eventdate},
         success: function (response) {
-            debugger;
+
         },
         error: function () {
-            debugger;
+
+        }
+    });
+
+}
+function removeEvent() {
+  var id = document.getElementById("eventID").value;
+  debugger;
+  $.ajax({
+        url: 'calendar_provider.php',
+        type: 'GET',
+        data: {method: "deleteEvent", event_id : id},
+        success: function (response) {
+
+        },
+        error: function () {
+
         }
     });
 }
+
 function getEvents(eventdate) {
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
         data: {method: "getEvents", event_date : eventdate},
         success: function (response) {
-            debugger;
+            var data = JSON.parse(response);
+            var i = 0;
+            while(i < data.length) {
+              document.getElementById("events").innerHTML += "<br><u>" + data[i].name + "(" + data[i].event_id + ") </u><br>" + data[i].description;
+              i++;
+            }
         },
         error: function () {
-            debugger;
         }
     });
 }
@@ -351,9 +374,6 @@ function monthToDay(element){
 function changeDay()
 {
 //  getYear();
-  alert(currentMonth);
-  alert(currentYear);
-  alert(currentDay);
   switch (currentMonth){
     case "0":
       currentMonth = "0" + currentMonth;
