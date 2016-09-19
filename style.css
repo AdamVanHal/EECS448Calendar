@@ -30,7 +30,22 @@
   background-position: center;
   	font-size:15px;
 }
+#Year {
+  text-align: center;
+  float:center;
+}
+#ddl {
+  text-align:center;float:center;
+}
+
+#leftData {
+  text-align:left;float:left;
+}
 /* http://css3buttongenerator.com/ */
+#viewSelector {
+  text-align:right;float:right;
+}
+
 #viewSelector button {
   background: #d934a7;
   background-image: -webkit-linear-gradient(top, #d934a7, #d934a7);
@@ -57,4 +72,30 @@
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+#Year button {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 20px 35px 20px 35px;
+  text-decoration: none;
+}
+
+#Year button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
 }

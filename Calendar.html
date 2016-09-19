@@ -9,19 +9,19 @@
       <button type="button" id = "wButton">Week</button>
       <button type="button" id = "dButton">Day</button>
     </div>
+    <div id = "leftData">
+      <form id = "dateSubmit">
+        <input type="date" name="bday">
+        <button onclick="getDate()">Submit</button>
+      </form>
 
-    <form id = "dateSubmit">
-      <input type="date" name="bday">
-    </form>
-    <button onclick="getDate()">Submit</button>
-    <p id="demo"></p>
-
-
+    </div>
   </head>
   <body>
+    <p></p>
     <div id = "Calendar" class="Calendar">
 
-    <h1><select name = "monthSelect" id = "monthSelect">
+    <div id = "ddl"><select name = "monthSelect" id = "monthSelect">
       <option value="8">August</option>
       <option value="9">September</option>
       <option value="10">October</option>
@@ -35,7 +35,7 @@
       <option value="6">June</option>
       <option value="7">July</option>
 
-    </select></h1>
+    </select></div>
 
 
       <table id = "Month">
@@ -159,24 +159,28 @@
 
 
     <div id = "Year" class = "Year">
-      <img src="January.png" alt="January" style="width:135px;height:75px;">
-      <img src="Febuary.png" alt="Febuary" style="width:135px;height:75px;">
-      <img src="March.png" alt="March" style="width:135px;height:75px;">
-      <img src="April.png" alt="April" style="width:135px;height:75px;">
-      <img src="May.png" alt="May" style="width:135px;height:75px;">
-      <img src="June.png" alt="June" style="width:135px;height:75px;">
-      <img src="July.png" alt="July" style="width:135px;height:75px;">
-      <img src="August.png" alt="August" style="width:135px;height:75px;">
-      <img src="September.png" alt="September" style="width:135px;height:75px;">
-      <img src="October.png" alt="October" style="width:135px;height:75px;">
-      <img src="November.png" alt="November" style="width:135px;height:75px;">
-      <img src="December.png" alt="December" style="width:135px;height:75px;">
+      <h1>2016-2017 School Year</h1>
+      <button type="button" id = "January">January</button>
+      <button type="button" id = "Febuary">Febuary</button>
+      <button type="button" id = "March">March</button>
+      <button type="button" id = "April">April</button>
+      <p></p>
+      <button type="button" id = "May">May</button>
+      <button type="button" id = "June">June</button>
+      <button type="button" id = "July">July</button>
+      <button type="button" id = "August">August</button>
+      <p></p>
+      <button type="button" id = "September">September</button>
+      <button type="button" id = "October">October</button>
+      <button type="button" id = "November">November</button>
+      <button type="button" id = "December">December</button>
     </div>
 
 
 
     <div id = "Day" class = "Day">
-document.getElementById("demo").innerHTML = Date();
+      <h1>DayView</h1>
+      <h2 id="DisplayDate"></h2>
     </div>
 
 
@@ -191,27 +195,33 @@ var currentState = "month";
 var monthSelect = document.getElementById('monthSelect');
 var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
 var currentDate = new Date();
+var currentMonth = "9";
 
 
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
-        $(".Calendar").hide();
+      $(".Calendar").hide();
+      $(".Day").hide();
     });
     $("#mButton").click(function () {
       currentState = "month";
       $(".Year").hide();
-        $(".Calendar").show();
+      $(".Calendar").show();
+      $(".Day").hide();
     });
     $("#wButton").click(function () {
       currentState = "week";
       $(".Year").hide();
-        $(".Calendar").hide();
+      $(".Calendar").hide();
+      $(".Day").hide();
     });
     $("#dButton").click(function () {
+      document.getElementById("DisplayDate").innerHTML = currentDate;
       currentState = "day";
       $(".Year").hide();
-        $(".Calendar").hide();
+      $(".Day").show();
+      $(".Calendar").hide();
     });
 
 
@@ -256,7 +266,7 @@ monthSelect.onchange = function() {
 //});
 function backEnd(num)
 {
-  alert(num);
+  currentMonth = num;
   switch (num){
     case "5":
       for(var i = 0; i < 35; i++)
@@ -347,22 +357,22 @@ function backEnd(num)
         {
           switch (i){
             case -5:
-            temp = 25;
-            break;
-            case -4:
             temp = 26;
             break;
-            case -3:
+            case -4:
             temp = 27;
             break;
-            case -2:
+            case -3:
             temp = 28;
             break;
-            case -1:
+            case -2:
             temp = 29;
             break;
-            case 0:
+            case -1:
             temp = 30;
+            break;
+            case 0:
+            temp = 31;
             break;
           }
         }
@@ -397,7 +407,7 @@ function backEnd(num)
       for(var i = -3; i < 32; i++)
       {
         var temp = i;
-        if(i < 1)
+        if(i < 1 || i > 30)
         {
           switch (i){
             case -3:
@@ -411,6 +421,9 @@ function backEnd(num)
             break;
             case 0:
             temp = 31;
+            break;
+            case 31:
+            temp = 1;
             break;
           }
         }
