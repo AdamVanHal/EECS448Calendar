@@ -10,28 +10,28 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title> Calendar </title>
+    
     <div id = "viewSelector">
       <button type="button" id = "yButton">Year</button>
       <button type="button" id = "mButton">Month</button>
       <button type="button" id = "wButton">Week</button>
       <button type="button" id = "dButton">Day</button>
     </div>
+
     <div id = "leftData">
       <form id = "dateSubmit">
         <input type="date" name="bday">
         <button onclick="getDate()">Submit</button>
       </form>
+    </div>
 
-    <form id = "dateSubmit">
-      <input type="date" name="bday">
-    </form>
-    <button onclick="getDate()">Submit</button>
     <form id = "addEvent">
       <input type="date" name="event_date">
       <input type="button" value="Add Event" id="addEventButton">
     </form>
 
   </head>
+
   <body>
   <!-- Modal for Removing event -->
   <div class="modal fade" id="myRemove" role="dialog">
@@ -83,11 +83,6 @@
 
     </div>
   </div>
-</div>
-======
-    </div>
-  </head>
-  <body>
     <p></p>
 
     <div id = "Calendar" class="Calendar">
@@ -231,23 +226,21 @@
 
     <div id = "Year" class = "Year">
       <h1>2016-2017 School Year</h1>
-      <button type="button" id = "January">January</button>
-      <button type="button" id = "Febuary">Febuary</button>
-      <button type="button" id = "March">March</button>
-      <button type="button" id = "April">April</button>
+      <button onclick="clickMonth(1)" type="button" id = "January">January</button>
+      <button onclick="clickMonth(2)" type="button" id = " Febuary ">Febuary</button>
+      <button onclick="clickMonth(3)" type="button" id = " Marc h">March</button>
+      <button onclick="clickMonth(4)" type="button" id = " April ">April</button>
       <p></p>
-      <button type="button" id = "May">May</button>
-      <button type="button" id = "June">June</button>
-      <button type="button" id = "July">July</button>
-      <button type="button" id = "August">August</button>
+      <button onclick="clickMonth(5)" type="button" id = "  May  ">May</button>
+      <button onclick="clickMonth(6)" type="button" id = " June  ">June</button>
+      <button onclick="clickMonth(7)" type="button" id = " July  ">July</button>
+      <button onclick="clickMonth(8)" type="button" id = "August">August</button>
       <p></p>
-      <button type="button" id = "September">September</button>
-      <button type="button" id = "October">October</button>
-      <button type="button" id = "November">November</button>
-      <button type="button" id = "December">December</button>
+      <button onclick="clickMonth(9)" type="button" id = "September">September</button>
+      <button onclick="clickMonth(10)" type="button" id = "October ">October</button>
+      <button onclick="clickMonth(11)" type="button" id = "November">November</button>
+      <button onclick="clickMonth(12)" type="button" id = "December">December</button>
     </div>
-
-
 
     <div id = "Day" class = "Day">
       <h1>DayView</h1>
@@ -259,18 +252,19 @@
 
     //global variables
 
-var currentState = "month";
-var monthSelect = document.getElementById('monthSelect');
+var currentState = "month",
+    monthSelect = document.getElementById('monthSelect'),
+    currentDate = new Date(),
+    currentMonth = "9";
+
 var tag = [document.getElementById('day1'), document.getElementById('day2'), document.getElementById('day3'), document.getElementById('day4'), document.getElementById('day5'), document.getElementById('day6'), document.getElementById('day7'), document.getElementById('day8'), document.getElementById('day9'), document.getElementById('day10'), document.getElementById('day11'), document.getElementById('day12'), document.getElementById('day13'), document.getElementById('day14'), document.getElementById('day15'), document.getElementById('day16'), document.getElementById('day17'), document.getElementById('day18'), document.getElementById('day19'), document.getElementById('day20'), document.getElementById('day21'), document.getElementById('day22'), document.getElementById('day23'), document.getElementById('day24'), document.getElementById('day25'), document.getElementById('day26'), document.getElementById('day27'), document.getElementById('day28'), document.getElementById('day29'), document.getElementById('day30'), document.getElementById('day31'), document.getElementById('day32'), document.getElementById('day33'), document.getElementById('day34'), document.getElementById('day35')];
-var currentDate = new Date();
+
     
     $("#addEventButton").click(function() {
       console.log("poop");
       $("#myModal").modal();
     });
   
-var currentMonth = "9";
-
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
@@ -297,8 +291,13 @@ var currentMonth = "9";
       $(".Calendar").hide();
     });
 
-
-
+function clickMonth(mon){
+  currentState = "month";
+  $(".Year").hide();
+  $(".Calendar").show();
+  $(".Day").hide();
+  backEnd(mon);
+}
 
 function getDate() {
     var x = document.getElementById("dateSubmit");
