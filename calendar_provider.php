@@ -38,7 +38,7 @@ if($method) {
 	switch ($method) {
 		case "getEvents":
 			$data = $calendar->getEvents($_REQUEST['event_date']);
-			return $data;
+			echo json_encode($data);
 			break;
 		case "addEvent":
 			$calendar->addEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date']);
