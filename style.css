@@ -38,7 +38,10 @@
   text-align:center;float:center;
 }
 #monthSwitch {
-    text-align:center;float:center;
+  vertical-align: middle;
+    display:table-cell;
+    text-align:center;
+    float: center;
 }
 
 #leftData {
