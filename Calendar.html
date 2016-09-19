@@ -313,7 +313,6 @@ function addToCalendar() {
 }
 function removeEvent() {
   var id = document.getElementById("eventID").value;
-  debugger;
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
@@ -342,14 +341,14 @@ function getEvents(eventdate) {
     });
 }
 function clickMonth(mon){
-mon = mon.toString();
+  mon = mon.toString();
+  document.getElementById("monthSelect").value = mon;
   currentState = "month";
   $(".Year").hide();
   $(".Calendar").show();
   $(".Day").hide();
   backEnd(mon);
 }
-
 function monthDown() {
   if(currentMonth == "1" || currentMonth == "01")
   {currentMonth = "12";}
@@ -378,7 +377,6 @@ function monthDown() {
     displayMonth();
     backEnd(currentMonth);
 }
-
 function monthUp(){
   if(currentMonth == "1" || currentMonth == "01")
   {currentMonth = "2";}
@@ -407,7 +405,6 @@ function monthUp(){
     displayMonth();
         backEnd(currentMonth);
 }
-
 function monthToDay(element){
   currentDay = document.getElementById(element).innerHTML;
   $(".Year").hide();
@@ -514,18 +511,13 @@ function displayMonth()
   else if (currentMonth == "12")
   {document.getElementById("DisplayMonth").innerHTML = "December";}
 }
-
 function getYear()
 {
   if(month.parseInt() > 7)
   currentYear = "2016";
-
   else
   currentYear = "2017";
 }
-
-
-
 function getDate() {
     var x = document.getElementById("dateSubmit");
     var text = "";
@@ -533,9 +525,7 @@ function getDate() {
     for (i = 0; i < x.length ;i++) {
         text += x.elements[i].value + "<br>";
     }
-
     var temp = text.substring(0,4);
-    alert(temp);
     if (temp == "2016" || temp == "2017")
     {
       temp2 = text.substring(5,7);
