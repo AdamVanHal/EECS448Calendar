@@ -313,6 +313,7 @@ function addToCalendar() {
 }
 function removeEvent() {
   var id = document.getElementById("eventID").value;
+  debugger;
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
@@ -341,7 +342,7 @@ function getEvents(eventdate) {
     });
 }
 function clickMonth(mon){
-  mon = mon.toString();
+mon = mon.toString();
   document.getElementById("monthSelect").value = mon;
   currentState = "month";
   $(".Year").hide();
@@ -349,6 +350,7 @@ function clickMonth(mon){
   $(".Day").hide();
   backEnd(mon);
 }
+
 function monthDown() {
   if(currentMonth == "1" || currentMonth == "01")
   {currentMonth = "12";}
@@ -377,6 +379,7 @@ function monthDown() {
     displayMonth();
     backEnd(currentMonth);
 }
+
 function monthUp(){
   if(currentMonth == "1" || currentMonth == "01")
   {currentMonth = "2";}
@@ -405,6 +408,7 @@ function monthUp(){
     displayMonth();
         backEnd(currentMonth);
 }
+
 function monthToDay(element){
   currentDay = document.getElementById(element).innerHTML;
   $(".Year").hide();
@@ -486,38 +490,56 @@ function changeDay()
 }
 function displayMonth()
 {
+
   if(currentMonth == "1" || currentMonth == "01")
-  {document.getElementById("DisplayMonth").innerHTML = "January";}
+  {document.getElementById("DisplayMonth").innerHTML = "January";
+  document.getElementById("monthSelect").value = 1;}
   else if (currentMonth == "2"|| currentMonth == "02")
-  {document.getElementById("DisplayMonth").innerHTML = "Febuary";}
+  {document.getElementById("DisplayMonth").innerHTML = "Febuary";
+  document.getElementById("monthSelect").value = 2;}
   else if (currentMonth == "3" || currentMonth == "03")
-  {document.getElementById("DisplayMonth").innerHTML = "March";}
+  {document.getElementById("DisplayMonth").innerHTML = "March";
+  document.getElementById("monthSelect").value = 3;}
   else if (currentMonth == "4" || currentMonth == "04")
-  {document.getElementById("DisplayMonth").innerHTML = "April";}
+  {document.getElementById("DisplayMonth").innerHTML = "April";
+  document.getElementById("monthSelect").value = 4;}
   else if (currentMonth == "5" || currentMonth == "05")
-  {document.getElementById("DisplayMonth").innerHTML = "May";}
+  {document.getElementById("DisplayMonth").innerHTML = "May";
+  document.getElementById("monthSelect").value = 5;}
   else if (currentMonth == "6" || currentMonth == "06")
-  {document.getElementById("DisplayMonth").innerHTML = "June";}
+  {document.getElementById("DisplayMonth").innerHTML = "June";
+  document.getElementById("monthSelect").value = 6;}
   else if (currentMonth == "7" || currentMonth == "07")
-  {document.getElementById("DisplayMonth").innerHTML = "July";}
+  {document.getElementById("DisplayMonth").innerHTML = "July";
+  document.getElementById("monthSelect").value = 7;}
   else if (currentMonth == "8" || currentMonth == "08")
-  {document.getElementById("DisplayMonth").innerHTML = "August";}
+  {document.getElementById("DisplayMonth").innerHTML = "August";
+  document.getElementById("monthSelect").value = 8;}
   else if (currentMonth == "9" || currentMonth == "09")
-  {document.getElementById("DisplayMonth").innerHTML = "September";}
+  {document.getElementById("DisplayMonth").innerHTML = "September";
+  document.getElementById("monthSelect").value = 9;}
   else if (currentMonth == "10")
-  {document.getElementById("DisplayMonth").innerHTML = "October";}
+  {document.getElementById("DisplayMonth").innerHTML = "October";
+  document.getElementById("monthSelect").value = 10;}
   else if (currentMonth == "11")
-  {document.getElementById("DisplayMonth").innerHTML = "November";}
+  {document.getElementById("DisplayMonth").innerHTML = "November";
+  document.getElementById("monthSelect").value = 11;}
   else if (currentMonth == "12")
-  {document.getElementById("DisplayMonth").innerHTML = "December";}
+  {document.getElementById("DisplayMonth").innerHTML = "December";
+  document.getElementById("monthSelect").value = 12;}
 }
+
 function getYear()
 {
   if(month.parseInt() > 7)
   currentYear = "2016";
+
   else
   currentYear = "2017";
 }
+
+
+
 function getDate() {
     var x = document.getElementById("dateSubmit");
     var text = "";
@@ -525,6 +547,7 @@ function getDate() {
     for (i = 0; i < x.length ;i++) {
         text += x.elements[i].value + "<br>";
     }
+
     var temp = text.substring(0,4);
     if (temp == "2016" || temp == "2017")
     {
