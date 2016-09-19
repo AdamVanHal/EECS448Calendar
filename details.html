@@ -15,7 +15,7 @@
 <body>
 <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-default btn-lg pull-right" id="myRem">Remove Event</button>
+  <button type="button" class="btn btn-default btn-lg pull-right" id="myRem">View/Remove</button>
   <button type="button" class="btn btn-default btn-lg pull-right" id="myBtn">Add Event</button>
 
   <!-- Modal for Removing event -->
@@ -27,7 +27,7 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
             <div class="form-group">
-              <label for ="select">Select event to remove.</label>
+              <h3>Click an event to remove it</h3>
               <p id="event"></p>
             </div>
           </form>
@@ -58,11 +58,11 @@
               <textarea class="form-control" id="eventDetails" placeholder="Enter Details"></textarea>
             </div>
 
-              <button type="button" class="btn btn-success btn-block" onclick = "addToCalendar()"></span> Submit</button>
+              <button type="button" class="btn btn-success btn-block" onclick = "addToCalendar()" ></span> Submit</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Exit</button>
         </div>
       </div>
 
@@ -71,6 +71,7 @@
 </div>
 
 <script>
+var eventList = [];
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
@@ -87,12 +88,44 @@ function addToCalendar() {
           var date = document.getElementById("date").value;
           var eventName = document.getElementById("eventName").value;
           var eventDetails = document.getElementById("eventDetails").value
-          document.getElementById("event").innerHTML = date + " " + eventName + " " + eventDetails;
           var eventDN = date + " " + eventName;
           eventList.push(eventDN);
-          return false;
+          updateView();
+  }
+
+  var events = document.getElementById('event')
+  events.addEventListener('click', function(e) {
+           var index = e.target.getAttribute('value');
+           eventList.splice(index, 1);
+           updateView();
+  });
+
+function updateView() {
+        var text = "";
+        for (i = 0; i < eventList.length; i++) {
+          text += "<a href='#' class='item' value='" + i + "'>" + eventList[i] + " " + "\n" + "</a>" + "<br>";
+          }
+
+        document.getElementById("event").innerHTML = text;
        }
+       updateView();
+//AJAX
+$.ajax({
+        url: 'calender_provider.php',
+        type: 'GET',
+        data: { field1: "hello", field2 : "hello2"} ,
+        contentType: 'application/json; charset=utf-8',
+        success: function (response) {
+            //your success code
+        },
+        error: function () {
+            //your error code
+        }
+    });
+
 </script>
+
+
 
 </body>
 </html>
