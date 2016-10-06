@@ -11,10 +11,10 @@ class Calendar {
 		}
 		return $data;
 	}
-	public function addEvent($name, $description, $event_date) {
+	public function addEvent($name, $description, $event_date, $isRecurring=0, $isMultiday=0, $StartTime=NULL, $EndTime=NULL) {
 		$db = $this->getDB();
-		$insert_string = "'" . $name . "', '" . $description . "', '" . $event_date . "', " . "0";
-		$db->query("INSERT INTO calendar (name, description, event_date, user) VALUES (" . $insert_string . ")");
+		$insert_string = "'" . $name . "', '" . $description . "', '" . $event_date . "', " . "0" . ", '" . $StartTime . "', '" $EndTime . "', '" . $isRecurring . "', '" . $isMultiday . "'";
+		$db->query("INSERT INTO calendar (name, description, event_date, user, StartTime, EndTime, isRecurring, isMultiDay) VALUES (" . $insert_string . ")");
 	}
 	public function deleteEvent($event_id) {
 		$db = $this->getDB();
@@ -41,7 +41,13 @@ if($method) {
 			echo json_encode($data);
 			break;
 		case "addEvent":
-			$calendar->addEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date']);
+			if($_REQUEST['isRecurring']==1 OR $_REQUEST['isMultiday']==1){
+				$calendar->addEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date'], $_REQUEST['isRecurring'], $_REQUEST['isMultiday']);
+			}else if($_REQUEST['startTime']!=NULL){
+				$calendar->addEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date'], 0, 0, $_REQUEST['startTime'], $_REQUEST['endTime']);
+			}else{
+				$calendar->addEvent($_REQUEST['name'], $_REQUEST['description'], $_REQUEST['event_date']);
+			}
 			break;
 		case "deleteEvent":
 			$calendar->deleteEvent($_REQUEST['event_id']);
