@@ -20,6 +20,9 @@ var dateSentence = currentDate;
     $("#removeEventButton").click(function() {
       $("#myRemove").modal();
     });
+    $("#multidayEventButton").click(function() {
+      $("#myMultiday").modal();
+    });
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
@@ -40,10 +43,45 @@ var dateSentence = currentDate;
       $(".Calendar").hide();
     });
 //helper functions
-function addToCalendar() {
-  var eventdate = document.getElementById("event_date").value,
-      eventName = document.getElementById("eventName").value,
-      eventDetails = document.getElementById("eventDetails").value;
+function addDay(eventdate){
+    var split = eventdate.split('-');
+    split[2] = parseInt(split[2])+1;
+    split[2] = split[2].toString();
+    eventdate = split.join('-');
+    return(eventdate);
+}
+
+function addMultidayEvent(){
+    var numDays = document.getElementById("numDays").value,
+        eventdate = document.getElementById("event_date").value;
+    for(var i = 0; i < numDays; i++){
+        addMultiday(eventdate);
+        eventdate = addDay(eventdate);
+    }
+}
+
+function addMultiday(eventdate) {
+    var  eventName = document.getElementById("eventName").value,
+         multDay = 1,
+         eventDetails = document.getElementById("eventDetails").value;
+//insert to database
+  $.ajax({
+        url: 'calendar_provider.php',
+        type: 'GET',
+        data: {method: "addEvent", name : eventName, description : eventDetails, event_date : eventdate, isMultiday: multDay},
+        success: function (response) {
+        },
+        error: function () {
+        }
+    });
+}
+
+function addToCalendar(eventdate) {
+    alert("single");
+    var  eventdate = document.getElementById("event_date1").value;
+         eventName = document.getElementById("eventName1").value,
+         eventDetails = document.getElementById("eventDetails1").value;
+    alert("hello");
 //insert to database
   $.ajax({
         url: 'calendar_provider.php',
@@ -55,6 +93,7 @@ function addToCalendar() {
         }
     });
 }
+
 function removeEvent() {
   var id = document.getElementById("eventID").value;
   debugger;
