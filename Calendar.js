@@ -81,12 +81,14 @@ function addToCalendar(eventdate) {
     var  eventdate = document.getElementById("event_date1").value;
          eventName = document.getElementById("eventName1").value,
          eventDetails = document.getElementById("eventDetails1").value;
+    var startTime =  document.getElementById("start_time").value;
+    var endTime =  document.getElementById("end_time").value;
     alert("hello");
 //insert to database
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
-        data: {method: "addEvent", name : eventName, description : eventDetails, event_date : eventdate},
+        data: {method: "addEvent", name: eventName, description: eventDetails, event_date: eventdate, startTime: startTime, endTime: endTime},
         success: function (response) {
         },
         error: function () {
@@ -116,7 +118,7 @@ function getEvents(eventdate) {
             var data = JSON.parse(response);
             var i = 0;
             while(i < data.length) {
-              document.getElementById("events").innerHTML += "<br><u>" + data[i].name + "(" + data[i].event_id + ") </u><br>" + data[i].description;
+              document.getElementById("events").innerHTML += "<br><u>" + data[i].name + "(" + data[i].event_id + ") </u><br>" + "start time: " + data[i].StartTime + " end time: " + data[i].EndTime + "<br>" + data[i].description;
               i++;
             }
         },
