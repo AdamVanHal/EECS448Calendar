@@ -220,13 +220,11 @@ function addRecurring(eventdate) {
 //*************************************************************************************
 
 function addToCalendar(eventdate) {
-    alert("single");
-    var  eventdate = document.getElementById("event_date1").value;
+    var  eventdate = document.getElementById("event_date1").value,
          eventName = document.getElementById("eventName1").value,
          eventDetails = document.getElementById("eventDetails1").value;
     var startTime =  document.getElementById("start_time").value;
     var endTime =  document.getElementById("end_time").value;
-    alert("hello");
 //insert to database
   $.ajax({
         url: 'calendar_provider.php',
