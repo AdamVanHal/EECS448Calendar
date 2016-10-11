@@ -4,7 +4,7 @@ class Calendar {
 
 	public function getEvents($event_date) {
 		$db = $this->getDB();
-		$records = $db->query("SELECT * FROM calendar WHERE event_date='" . $event_date . "'");
+		$records = $db->query("SELECT * FROM calendar WHERE event_date='" . $event_date . "' ORDER BY StartTime");
 		$data = array();
 		while($row = $records->fetch_assoc()) {
 			$data[] = $row; 
