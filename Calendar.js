@@ -23,6 +23,9 @@ var dateSentence = currentDate;
     $("#multidayEventButton").click(function() {
       $("#myMultiday").modal();
     });
+	$("#recurringEventButton").click(function() {
+      $("#myRecurring").modal();
+    });
     $("#yButton").click(function () {
       currentState = "year";
       $(".Year").show();
@@ -88,6 +91,133 @@ function addMultiday(eventdate) {
         }
     });
 }
+
+//*************************************************************************************
+//Work on the two functions below, cant use addToCalendar so the second function will need to add to the db.
+//first do an if to check which radio button is selected
+//*************************************************************************************
+
+function whichDay(dateString) {
+  return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][new Date(dateString).getDay()];
+}
+
+function addRecurringEvent(){
+	var eventdate = document.getElementById("event_date2").value;
+	var flag = 0;
+    if(document.getElementById("byDay").checked == true){
+		addRecurring(eventdate);
+		var param1 = 13;
+		var param2 = 35;
+		var split = eventdate.split('-');
+		while(split[1] < param1 && split[2] < param2){
+		  if(document.getElementById("Sun").checked == true){
+		    if(whichday(eventdate) == "Sunday"){
+			  Flag = 1;
+			}
+		  }
+		  if(document.getElementById("Mon").checked == true){
+		    if(whichday(eventdate) == "Monday"){
+			  Flag = 1;
+			}
+		  }
+		  if(document.getElementById("Tue").checked == true){
+		    if(whichday(eventdate) == "Tuesday"){
+			  Flag = 1;
+			}
+		  }
+		  if(document.getElementById("Wed").checked == true){
+		    if(whichday(eventdate) == "Wednesday"){
+			  Flag = 1;
+			}
+		  }
+		  if(document.getElementById("Thur").checked == true){
+		    if(whichday(eventdate) == "Thursday"){
+			  Flag = 1;
+			}
+		  }
+		  if(document.getElementById("Fri").checked == true){
+		    if(whichday(eventdate) == "Friday"){
+			  Flag = 1;
+			}
+		  }
+		  if(document.getElementById("Sat").checked == true){
+		    if(whichday(eventdate) == "Saturday"){
+			  Flag = 1;
+			}
+		  }
+		  if(Flag == 1){addRecurring(eventdate);Flag = 0;}
+		  split = eventdate.split('-');
+		  if(split[0] == 2017){param1 = 5; param2 = 18;}
+		}
+		alert("byDay");
+	}
+	else if(document.getElementById("byWeek").checked == true){
+		var param1 = 13;
+		var param2 = 35;
+		var split = eventdate.split('-');
+		while(split[1] <= param1 && split[2] < param2){
+			addRecurring(eventdate);
+			for(var j = 0; j < 14; j ++){
+				addDay(eventdate);
+			}
+			split = eventdate.split('-');
+			if(split[0] == 2017){param1 = 5; param2 = 18;}
+		}
+		alert("byWeek");
+	}
+	else if(document.getElementById("byMonth").checked == true){
+	  var split = eventdate.split('-');
+	  split[1] = parseInt(split[1]);
+	  if(split[0] == "2016"){
+		while(split[1] < 12){
+			//push event
+			split[1] = split[1].toString();
+			eventdate = split.join('-');
+			addRecurring(eventdate);
+			split[1] = parseInt(split[1]);
+			split[1] = split[1] + 1;
+		}
+		split[1] = split[1].toString();
+		eventdate = split.join('-');
+		addRecurring(eventdate);
+		split[0] = parseInt(split[0]);
+		split[1] = parseInt(split[1]);
+		split[0] = split[0] + 1;
+		split[1] = 01;
+	  }
+	  while(split[1] < 6){
+	    split[1] = split[1].toString();
+		eventdate = split.join('-');
+		addRecurring(eventdate);
+		split[1] = parseInt(split[1]);
+		split[1] = split[1] + 1;
+	  }
+		alert("byMonth");
+	}
+	else{
+		alert("Choose a method by which to make the event recurring");
+	}
+}
+
+function addRecurring(eventdate) {
+	alert(eventdate);
+   /* var  eventName = document.getElementById("eventName2").value,
+         eventDetails = document.getElementById("eventDetails2").value;
+    var startTime =  document.getElementById("start_time2").value;
+    var endTime =  document.getElementById("end_time2").value;
+    alert("hello");
+//insert to database
+  $.ajax({
+        url: 'calendar_provider.php',
+        type: 'GET',
+        data: {method: "addEvent", name: eventName, description: eventDetails, event_date: eventdate, startTime: startTime, endTime: endTime},
+        success: function (response) {
+        },
+        error: function () {
+        }
+    });*/
+}
+//*************************************************************************************
 
 function addToCalendar(eventdate) {
     alert("single");
@@ -718,3 +848,60 @@ function backEnd(num)
       break;
   }
 }
+
+//function to gray out the day check boxes when the radio button is not selected
+
+
+
+function checkDisable()
+{
+  if(document.getElementById("byDay").checked == true)
+  {
+    var eventdate = document.getElementById("event_date2").value;
+	var dOw = whichDay(eventdate);
+	if(dOw == "Sunday"){document.getElementById("Sun").checked = true;}
+	else{document.getElementById("Sun").disabled = false;}
+	if(dOw == "Monday"){document.getElementById("Mon").checked = true;}
+	else{document.getElementById("Mon").disabled = false;}
+	if(dOw == "Tuesday"){document.getElementById("Tue").checked = true;}
+	else{document.getElementById("Tue").disabled = false;}
+	if(dOw == "Wednesday"){document.getElementById("Wed").checked = true;}
+	else{document.getElementById("Wed").disabled = false;}
+	if(dOw == "Thursday"){document.getElementById("Thur").checked = true;}
+	else{document.getElementById("Thur").disabled = false;}
+	if(dOw == "Friday"){document.getElementById("Fri").checked = true;}
+	else{document.getElementById("Fri").disabled = false;}
+	if(dOw == "Saturday"){document.getElementById("Sat").checked = true;}
+	else{document.getElementById("Sat").disabled = false;}
+  }
+  else
+  {
+    document.getElementById("Sun").disabled = true;
+	document.getElementById("Mon").disabled = true;
+	document.getElementById("Tue").disabled = true;
+	document.getElementById("Wed").disabled = true;
+	document.getElementById("Thur").disabled = true;
+	document.getElementById("Fri").disabled = true;
+	document.getElementById("Sat").disabled = true;
+	
+	document.getElementById("Sun").checked = false;
+	document.getElementById("Mon").checked = false;
+	document.getElementById("Tue").checked = false;
+	document.getElementById("Wed").checked = false;
+	document.getElementById("Thur").checked = false;
+	document.getElementById("Fri").checked = false;
+	document.getElementById("Sat").checked = false;
+  }
+}
+
+function radioEnable(){
+  var eventdate = document.getElementById("event_date2").value;
+  if(eventdate != 0)
+  {
+    alert(eventdate);
+  }
+  document.getElementById("byDay").disabled = false;
+  document.getElementById("byWeek").disabled = false;
+  document.getElementById("byMonth").disabled = false;
+}
+

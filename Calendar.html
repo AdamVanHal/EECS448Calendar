@@ -28,6 +28,7 @@
     <input type="button" value="Add Event" id="addEventButton">
     <input type="button" value="Remove Event" id="removeEventButton">
     <input type="button" value="Multiday Event" id="multidayEventButton">
+	<input type="button" value="Recurring Event" id="recurringEventButton">
 
 
   </head>
@@ -54,6 +55,55 @@
             </div>
 
               <button type="submit" class="btn btn-success btn-block" onclick = "addMultidayEvent()" ></span> Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Exit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- Modal for Adding Recurring event -->
+  <div class="modal fade" id="myRecurring" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="date">Enter Date</label>
+              <input type="date" class="form-control" onChange="radioEnable()" id="event_date2">
+							<label for="startTime">Start Time</label>
+							<input type="time" class="form-control" id="start_time2">
+							<label for="endTime">End Time</label>
+							<input type="time" class="form-control" id="end_time2">
+            </div>
+            <div class="form-group">
+              <label for="eve"></span> Event</label>
+              <input type="text" class="form-control" id="eventName2" placeholder="Enter Event Name">
+              <textarea class="form-control" id="eventDetails2" placeholder="Enter Details"></textarea>
+            </div>
+			
+			<form>
+			By day:<input type="radio" name="recurring" onClick="checkDisable()" id="byDay" disabled><br>
+			<div>
+			  Sun: <input type="checkbox" id="Sun"  disabled>
+			  Mon: <input type="checkbox" id="Mon"  disabled>
+			  Tue: <input type="checkbox" id="Tue"  disabled>
+			  Wed: <input type="checkbox" id="Wed"  disabled>
+			  Thur:<input type="checkbox" id="Thur" disabled>
+			  Fri: <input type="checkbox" id="Fri"  disabled>
+			  Sat: <input type="checkbox" id="Sat"  disabled>
+			</div>
+			<hr>
+			Every two weeks:<input type="radio" name="recurring" onClick="checkDisable()" id="byWeek" disabled><br>
+			Every Month:<input type="radio" name="recurring" onClick="checkDisable()" id="byMonth" disabled>
+			</form>
+
+              <button type="submit" class="btn btn-success btn-block" onclick = "addRecurringEvent()" ></span> Submit</button>
           </form>
         </div>
         <div class="modal-footer">
