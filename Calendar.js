@@ -44,8 +44,26 @@ var dateSentence = currentDate;
     });
 //helper functions
 function addDay(eventdate){
+    alert("ello");
+    var date = new Date();
+    alert("1");
     var split = eventdate.split('-');
-    split[2] = parseInt(split[2])+1;
+    alert(split[0]);
+    alert("1");
+    split[1] = parseInt(split[1]);
+    alert("1");
+    split[2] = parseInt(split[2]);
+    alert("1");
+    date.setFullYear(split[0],split[1],0);
+    if(split[2] == date.getDate()){
+        split[2] = 1;
+        split[1] = split[1] + 1;
+    }
+    else{
+        split[2] = split[2]+1;
+    }
+    split[0] = split[0].toString();
+    split[1] = split[1].toString();
     split[2] = split[2].toString();
     eventdate = split.join('-');
     return(eventdate);
@@ -55,8 +73,11 @@ function addMultidayEvent(){
     var numDays = document.getElementById("numDays").value,
         eventdate = document.getElementById("event_date").value;
     for(var i = 0; i < numDays; i++){
+        alert("1");
         addMultiday(eventdate);
+        alert("2");
         eventdate = addDay(eventdate);
+        alert("3");
     }
 }
 
