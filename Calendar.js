@@ -145,7 +145,6 @@ function addRecurringEvent(){
 		  split = eventdate.split('-');
 		  if(split[0] == "2017"){param1 = 5;}
 		}
-		alert("byDay");
 	}
 	else if(document.getElementById("byWeek").checked == true){
 		var param1 = 17;
@@ -158,7 +157,6 @@ function addRecurringEvent(){
 			split = eventdate.split('-');
 			if(split[0] == 2017){param1 = 5;}
 		}
-		alert("byWeek");
 	}
 	else if(document.getElementById("byMonth").checked == true){
 	  var split = eventdate.split('-');
@@ -187,7 +185,6 @@ function addRecurringEvent(){
 		split[1] = parseInt(split[1]);
 		split[1] = split[1] + 1;
 	  }
-		alert("byMonth");
 	}
 	else{
 		alert("Choose a method by which to make the event recurring");
