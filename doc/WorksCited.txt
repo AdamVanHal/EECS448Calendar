@@ -1,0 +1,5 @@
+Works Cited for Team Waterfall Method Project 2 EECS 448
+
+GitsOutForHarambe Project 1 https://github.com/JackSt96/EECS448Calendar
+        Used as a base for our code. Refactored to seperate HTML from Javascript and edited existing functions and HTML to support times, and copied the JS function "AddToCalendar()" to begin support for multiday and recurring events
+
