@@ -11,7 +11,7 @@ class Calendar {
 		}
 		return $data;
 	}
-	public function addEvent($name, $description, $event_date, $isRecurring=0, $isMultiday=0, $StartTime=NULL, $EndTime=NULL) {
+	public function addEvent($name, $description, $event_date, $isRecurring=0, $isMultiday=0, $StartTime=00:00:00, $EndTime=24:00:00) {
 		$db = $this->getDB();
 		$insert_string = "'" . $name . "', '" . $description . "', '" . $event_date . "', " . "0" . ", '" . $StartTime . "', '" . $EndTime . "', '" . $isRecurring . "', '" . $isMultiday . "'";
 		$db->query("INSERT INTO calendar (name, description, event_date, user, StartTime, EndTime, isRecurring, isMultiDay) VALUES (" . $insert_string . ")");
