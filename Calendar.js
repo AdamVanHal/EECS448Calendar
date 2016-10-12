@@ -119,31 +119,30 @@ function addRecurringEvent(){
 		var split = eventdate.split('-');
 		while(split[1] <= param1){
 		  if(document.getElementById("Sun").checked == true){
-		    if(whichDay(eventdate) == "Sunday"){Flag = 1;}
-		  }
-		  if(document.getElementById("Mon").checked == true){
 		    if(whichDay(eventdate) == "Monday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Tue").checked == true){
+		  if(document.getElementById("Mon").checked == true){
 		    if(whichDay(eventdate) == "Tuesday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Wed").checked == true){
+		  if(document.getElementById("Tue").checked == true){
 		    if(whichDay(eventdate) == "Wednesday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Thur").checked == true){
+		  if(document.getElementById("Wed").checked == true){
 		    if(whichDay(eventdate) == "Thursday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Fri").checked == true){
+		  if(document.getElementById("Thur").checked == true){
 		    if(whichDay(eventdate) == "Friday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Sat").checked == true){
+		  if(document.getElementById("Fri").checked == true){
 		    if(whichDay(eventdate) == "Saturday"){Flag = 1;}
+		  }
+		  if(document.getElementById("Sat").checked == true){
+		    if(whichDay(eventdate) == "Sunday"){Flag = 1;}
 		  }
 		  if(Flag == 1){addRecurring(eventdate);Flag = 0;}
 		  eventdate = addDay(eventdate);
 		  split = eventdate.split('-');
 		  if(split[0] == "2017"){param1 = 5;}
-		  alert(eventdate);
 		}
 		alert("byDay");
 	}
@@ -195,7 +194,6 @@ function addRecurringEvent(){
 }
 
 function addRecurring(eventdate) {
-	alert(eventdate);
     var  eventName = document.getElementById("eventName2").value,
          eventDetails = document.getElementById("eventDetails2").value;
     var startTime =  document.getElementById("start_time2").value;
