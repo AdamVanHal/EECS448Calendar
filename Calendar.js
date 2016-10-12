@@ -49,6 +49,7 @@ var dateSentence = currentDate;
 //helper functions
 
 //The following 3 functions all control the multiday event addition
+//Add Multiday Class
 
 //the addDay function takes in the current date and moves it to the next date
 function addDay(eventdate){
