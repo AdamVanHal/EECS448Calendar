@@ -265,6 +265,7 @@ function getEvents(eventdate) {
         success: function (response) {
             var data = JSON.parse(response);
             var i = 0;
+					  var lastEnd = NULL;
             while(i < data.length) {
               document.getElementById("events").innerHTML += "<br><u>" + data[i].name + "(" + data[i].event_id + ") </u><br>" + "start time: " + data[i].StartTime + " end time: " + data[i].EndTime + "<br>" + data[i].description;
               i++;
