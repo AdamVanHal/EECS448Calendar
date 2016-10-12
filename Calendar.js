@@ -45,7 +45,12 @@ var dateSentence = currentDate;
       $(".Day").show();
       $(".Calendar").hide();
     });
+
 //helper functions
+
+//The following 3 functions all control the multiday event addition
+
+//the addDay function takes in the current date and moves it to the next date
 function addDay(eventdate){
     var date = new Date();
     var split = eventdate.split('-');
@@ -66,6 +71,7 @@ function addDay(eventdate){
     return(eventdate);
 }
 
+//the addMultidayEvent function loops through the addMultiday function to create as many events as the user wants
 function addMultidayEvent(){
     var numDays = document.getElementById("numDays").value,
         eventdate = document.getElementById("event_date").value;
@@ -75,11 +81,12 @@ function addMultidayEvent(){
     }
 }
 
+//the addMultiday function adds an event for any inputed date
 function addMultiday(eventdate) {
     var  eventName = document.getElementById("eventName").value,
          multDay = 1,
          eventDetails = document.getElementById("eventDetails").value;
-//insert to database
+  //insert to database
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
@@ -213,7 +220,10 @@ function addToCalendar(eventdate) {
          eventDetails = document.getElementById("eventDetails1").value;
     var startTime =  document.getElementById("start_time").value;
     var endTime =  document.getElementById("end_time").value;
-//insert to database
+		if(startTime>endTime){
+			alert("Your Event starts after it ends!");
+		}else{
+  //insert to database
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
@@ -223,6 +233,7 @@ function addToCalendar(eventdate) {
         error: function () {
         }
     });
+  }
 }
 
 function removeEvent() {
@@ -246,10 +257,21 @@ function getEvents(eventdate) {
         success: function (response) {
             var data = JSON.parse(response);
             var i = 0;
+					  var lastEnd = null;
+					  var overLap = false;
             while(i < data.length) {
               document.getElementById("events").innerHTML += "<br><u>" + data[i].name + "(" + data[i].event_id + ") </u><br>" + "start time: " + data[i].StartTime + " end time: " + data[i].EndTime + "<br>" + data[i].description;
-              i++;
+              if(lastEnd != null){
+								if(lastEnd>data[i].StartTime){
+									overLap = true;
+								}
+							}
+							lastEnd = data[i].EndTime;
+							i++;
             }
+					if(overLap){
+						alert("Overlapping Dates detected");
+					}
         },
         error: function () {
         }
