@@ -45,7 +45,12 @@ var dateSentence = currentDate;
       $(".Day").show();
       $(".Calendar").hide();
     });
+
 //helper functions
+
+//The following 3 functions all control the multiday event addition
+
+//the addDay function takes in the current date and moves it to the next date
 function addDay(eventdate){
     var date = new Date();
     var split = eventdate.split('-');
@@ -66,6 +71,7 @@ function addDay(eventdate){
     return(eventdate);
 }
 
+//the addMultidayEvent function loops through the addMultiday function to create as many events as the user wants
 function addMultidayEvent(){
     var numDays = document.getElementById("numDays").value,
         eventdate = document.getElementById("event_date").value;
@@ -75,11 +81,12 @@ function addMultidayEvent(){
     }
 }
 
+//the addMultiday function adds an event for any inputed date
 function addMultiday(eventdate) {
     var  eventName = document.getElementById("eventName").value,
          multDay = 1,
          eventDetails = document.getElementById("eventDetails").value;
-//insert to database
+  //insert to database
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
