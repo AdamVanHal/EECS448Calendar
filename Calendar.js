@@ -49,7 +49,6 @@ var dateSentence = currentDate;
 //helper functions
 
 //The following 3 functions all control the multiday event addition
-//Add Multiday Class
 
 //the addDay function takes in the current date and moves it to the next date
 function addDay(eventdate){
@@ -91,6 +90,7 @@ function addMultiday(eventdate) {
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
+        async: false,
         data: {method: "addEvent", name : eventName, description : eventDetails, event_date : eventdate, isMultiday: multDay},
         success: function (response) {
         },
@@ -120,31 +120,30 @@ function addRecurringEvent(){
 		var split = eventdate.split('-');
 		while(split[1] <= param1){
 		  if(document.getElementById("Sun").checked == true){
-		    if(whichDay(eventdate) == "Sunday"){Flag = 1;}
-		  }
-		  if(document.getElementById("Mon").checked == true){
 		    if(whichDay(eventdate) == "Monday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Tue").checked == true){
+		  if(document.getElementById("Mon").checked == true){
 		    if(whichDay(eventdate) == "Tuesday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Wed").checked == true){
+		  if(document.getElementById("Tue").checked == true){
 		    if(whichDay(eventdate) == "Wednesday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Thur").checked == true){
+		  if(document.getElementById("Wed").checked == true){
 		    if(whichDay(eventdate) == "Thursday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Fri").checked == true){
+		  if(document.getElementById("Thur").checked == true){
 		    if(whichDay(eventdate) == "Friday"){Flag = 1;}
 		  }
-		  if(document.getElementById("Sat").checked == true){
+		  if(document.getElementById("Fri").checked == true){
 		    if(whichDay(eventdate) == "Saturday"){Flag = 1;}
+		  }
+		  if(document.getElementById("Sat").checked == true){
+		    if(whichDay(eventdate) == "Sunday"){Flag = 1;}
 		  }
 		  if(Flag == 1){addRecurring(eventdate);Flag = 0;}
 		  eventdate = addDay(eventdate);
 		  split = eventdate.split('-');
 		  if(split[0] == "2017"){param1 = 5;}
-		  alert(eventdate);
 		}
 		alert("byDay");
 	}
@@ -196,7 +195,6 @@ function addRecurringEvent(){
 }
 
 function addRecurring(eventdate) {
-	alert(eventdate);
     var  eventName = document.getElementById("eventName2").value,
          eventDetails = document.getElementById("eventDetails2").value;
     var startTime =  document.getElementById("start_time2").value;
@@ -208,7 +206,7 @@ function addRecurring(eventdate) {
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
-        data: {method: "addEvent", name: eventName, description: eventDetails, event_date: eventdate, startTime: startTime, endTime: endTime, isRecurring = "1"},
+        data: {method: "addEvent", name: eventName, description: eventDetails, event_date: eventdate, startTime: startTime, endTime: endTime, isRecurring : "1"},
         success: function (response) {
         },
         error: function () {
