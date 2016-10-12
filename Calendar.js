@@ -232,7 +232,7 @@ function addToCalendar(eventdate) {
     var startTime =  document.getElementById("start_time").value;
     var endTime =  document.getElementById("end_time").value;
 		if(startTime>endTime){
-			alert("Your Event starts after it ends!);
+			alert("Your Event starts after it ends!");
 		}else{
   //insert to database
   $.ajax({
