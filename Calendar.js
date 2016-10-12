@@ -49,7 +49,6 @@ var dateSentence = currentDate;
 function addDay(eventdate){
     var date = new Date();
     var split = eventdate.split('-');
-    alert(split[0]);
     split[1] = parseInt(split[1]);
     split[2] = parseInt(split[2]);
     date.setFullYear(split[0],split[1],0);
