@@ -104,71 +104,60 @@ function addMultiday(eventdate) {
 //first do an if to check which radio button is selected
 //*************************************************************************************
 
+//function whichday is copied from the stackoverflow thread below
+//http://stackoverflow.com/questions/17964170/get-the-weekday-name-from-yyyy-mm-dd-format-using-javascript/17964373
 function whichDay(dateString) {
   return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][new Date(dateString).getDay()];
 }
 
 function addRecurringEvent(){
 	var eventdate = document.getElementById("event_date2").value;
-	var flag = 0;
+	var Flag = 0;
     if(document.getElementById("byDay").checked == true){
 		addRecurring(eventdate);
-		var param1 = 13;
-		var param2 = 35;
+		eventdate = addDay(eventdate);
+		var param1 = 17;
 		var split = eventdate.split('-');
-		while(split[1] < param1 && split[2] < param2){
+		while(split[1] <= param1){
 		  if(document.getElementById("Sun").checked == true){
-		    if(whichday(eventdate) == "Sunday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Monday"){Flag = 1;}
 		  }
 		  if(document.getElementById("Mon").checked == true){
-		    if(whichday(eventdate) == "Monday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Tuesday"){Flag = 1;}
 		  }
 		  if(document.getElementById("Tue").checked == true){
-		    if(whichday(eventdate) == "Tuesday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Wednesday"){Flag = 1;}
 		  }
 		  if(document.getElementById("Wed").checked == true){
-		    if(whichday(eventdate) == "Wednesday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Thursday"){Flag = 1;}
 		  }
 		  if(document.getElementById("Thur").checked == true){
-		    if(whichday(eventdate) == "Thursday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Friday"){Flag = 1;}
 		  }
 		  if(document.getElementById("Fri").checked == true){
-		    if(whichday(eventdate) == "Friday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Saturday"){Flag = 1;}
 		  }
 		  if(document.getElementById("Sat").checked == true){
-		    if(whichday(eventdate) == "Saturday"){
-			  Flag = 1;
-			}
+		    if(whichDay(eventdate) == "Sunday"){Flag = 1;}
 		  }
 		  if(Flag == 1){addRecurring(eventdate);Flag = 0;}
+		  eventdate = addDay(eventdate);
 		  split = eventdate.split('-');
-		  if(split[0] == 2017){param1 = 5; param2 = 18;}
+		  if(split[0] == "2017"){param1 = 5;}
+		  alert(eventdate);
 		}
 		alert("byDay");
 	}
 	else if(document.getElementById("byWeek").checked == true){
-		var param1 = 13;
-		var param2 = 35;
+		var param1 = 17;
 		var split = eventdate.split('-');
-		while(split[1] <= param1 && split[2] < param2){
+		while(split[1] <= param1){
 			addRecurring(eventdate);
 			for(var j = 0; j < 14; j ++){
-				addDay(eventdate);
+				eventdate = addDay(eventdate);
 			}
 			split = eventdate.split('-');
-			if(split[0] == 2017){param1 = 5; param2 = 18;}
+			if(split[0] == 2017){param1 = 5;}
 		}
 		alert("byWeek");
 	}
@@ -217,7 +206,7 @@ function addRecurring(eventdate) {
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
-        data: {method: "addEvent", name: eventName, description: eventDetails, event_date: eventdate, startTime: startTime, endTime: endTime},
+        data: {method: "addEvent", name: eventName, description: eventDetails, event_date: eventdate, startTime: startTime, endTime: endTime, isRecurring = "1"},
         success: function (response) {
         },
         error: function () {
@@ -232,7 +221,10 @@ function addToCalendar(eventdate) {
          eventDetails = document.getElementById("eventDetails1").value;
     var startTime =  document.getElementById("start_time").value;
     var endTime =  document.getElementById("end_time").value;
-//insert to database
+		if(startTime>endTime){
+			alert("Your Event starts after it ends!");
+		}else{
+  //insert to database
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
@@ -242,6 +234,7 @@ function addToCalendar(eventdate) {
         error: function () {
         }
     });
+  }
 }
 
 function removeEvent() {
@@ -867,8 +860,6 @@ function backEnd(num)
 
 //function to gray out the day check boxes when the radio button is not selected
 
-
-
 function checkDisable()
 {
   if(document.getElementById("byDay").checked == true)
@@ -912,10 +903,6 @@ function checkDisable()
 
 function radioEnable(){
   var eventdate = document.getElementById("event_date2").value;
-  if(eventdate != 0)
-  {
-    alert(eventdate);
-  }
   document.getElementById("byDay").disabled = false;
   document.getElementById("byWeek").disabled = false;
   document.getElementById("byMonth").disabled = false;
