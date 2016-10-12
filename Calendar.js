@@ -265,11 +265,21 @@ function getEvents(eventdate) {
         success: function (response) {
             var data = JSON.parse(response);
             var i = 0;
-					  var lastEnd = NULL;
+					  var lastEnd = null;
+					  var overLap = false;
             while(i < data.length) {
               document.getElementById("events").innerHTML += "<br><u>" + data[i].name + "(" + data[i].event_id + ") </u><br>" + "start time: " + data[i].StartTime + " end time: " + data[i].EndTime + "<br>" + data[i].description;
-              i++;
+              if(lastEnd != null){
+								if(lastEnd>data[i].StartTime){
+									overLap = true;
+								}
+							}
+							lastEnd = data[i].EndTime;
+							i++;
             }
+					if(overLap){
+						alert("Overlapping Dates detected");
+					}
         },
         error: function () {
         }
