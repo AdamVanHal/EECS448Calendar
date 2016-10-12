@@ -231,7 +231,10 @@ function addToCalendar(eventdate) {
          eventDetails = document.getElementById("eventDetails1").value;
     var startTime =  document.getElementById("start_time").value;
     var endTime =  document.getElementById("end_time").value;
-//insert to database
+		if(startTime>endTime){
+			alert("Your Event starts after it ends!);
+		}else{
+  //insert to database
   $.ajax({
         url: 'calendar_provider.php',
         type: 'GET',
@@ -241,6 +244,7 @@ function addToCalendar(eventdate) {
         error: function () {
         }
     });
+  }
 }
 
 function removeEvent() {
